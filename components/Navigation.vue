@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center justify-between bg-gray-900 p-4">
+  <nav class="flex items-center justify-between dark:bg-dark p-4">
     <div class="flex items-center justify-center w-full">
       <a
         href="#"
@@ -22,6 +22,7 @@
         >Contact</a
       >
     </div>
+    <color-mode-toggle></color-mode-toggle>
     <button
       class="block md:hidden text-white"
       @click="toggleMenu"
@@ -80,11 +81,17 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+import { ref } from 'vue'
 
-  const isMenuOpen = ref(false)
+const isMenuOpen = ref(false)
 
-  const toggleMenu = () => {
-    isMenuOpen.value = !isMenuOpen.value
-  }
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
 </script>
+
+<style scoped>
+a {
+  @apply text-dark dark:text-white hover:text-white;
+}
+</style>
