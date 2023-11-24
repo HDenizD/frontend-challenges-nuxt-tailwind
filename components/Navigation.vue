@@ -1,5 +1,7 @@
 <template>
-  <nav class="flex items-center justify-between dark:bg-dark p-4">
+  <nav
+    class="flex items-center justify-between border-2 border-dark dark:border-white dark:bg-dark rounded-b-lg bg-white p-4"
+  >
     <div class="flex items-center justify-center w-full">
       <a
         href="#"

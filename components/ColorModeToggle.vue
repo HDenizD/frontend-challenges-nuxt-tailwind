@@ -7,12 +7,14 @@
       v-if="
         colorMode.preference === 'system' || colorMode.preference === 'dark'
       "
-      name="mdi:moon-waning-crescent"
+      name="material-symbols:nights-stay"
       color="white"
     />
     <Icon
-      v-else
-      name="mdi:white-balance-sunny"
+      v-if="
+        colorMode.preference === 'system' || colorMode.preference === 'light'
+      "
+      name="material-symbols:partly-cloudy-day-rounded"
       class="text-dark"
     />
   </button>
