@@ -1,8 +1,8 @@
 <template>
   <nav
-    class="flex items-center justify-between border-2 border-dark dark:border-white dark:bg-dark rounded-b-lg bg-white p-4"
+    class="flex items-center justify-between border-2 border-dark dark:border-white dark:bg-dark rounded-b-lg bg-white p-4 h-16"
   >
-    <div class="flex items-center justify-center w-full">
+    <div class="hidden md:flex items-center justify-center w-full">
       <a
         href="#"
         class="text-white font-bold text-lg"
@@ -24,7 +24,7 @@
         >Contact</a
       >
     </div>
-    <color-mode-toggle></color-mode-toggle>
+    <ColorModeToggle />
     <button
       class="block md:hidden text-white"
       @click="toggleMenu"
