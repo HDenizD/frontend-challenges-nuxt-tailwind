@@ -1,5 +1,5 @@
 <template>
-  <div>just a test component</div>
+  <div>multi base form</div>
 </template>
 
 <script setup lang="ts"></script>
