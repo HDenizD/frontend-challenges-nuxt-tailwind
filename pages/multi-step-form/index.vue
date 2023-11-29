@@ -1,5 +1,5 @@
 <template>
-  <div>multi base form</div>
+  <div>multi step form</div>
 </template>
 
 <script setup lang="ts"></script>

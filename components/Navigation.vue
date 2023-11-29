@@ -1,31 +1,63 @@
 <template>
   <nav
     class="flex items-center justify-between border-2 border-dark dark:border-white dark:bg-dark rounded-b-lg bg-white p-4 h-16"
+    @mouseleave="closeAllDropdown()"
   >
-    <div class="hidden md:flex items-center justify-center w-full">
-      <a
-        href="#"
-        class="text-white font-bold text-lg"
-        >Home</a
-      >
-      <a
-        href="#"
-        class="ml-4 text-gray-300 hover:text-white"
-        >About</a
-      >
-      <a
-        href="#"
-        class="ml-4 text-gray-300 hover:text-white"
-        >Services</a
-      >
-      <a
-        href="#"
-        class="ml-4 text-gray-300 hover:text-white"
-        >Contact</a
-      >
+    <div class="hidden md:flex items-center justify-center w-full gap-10">
+      <template v-for="item in navigationItems">
+        <div
+          v-if="item.challenges"
+          class="flex justify-center"
+        >
+          <button
+            class="dark:text-white text-lg text-dark group"
+            :class="item.isOpen ? 'dark:text-purple-600 text-purple-600' : ''"
+            @click="item.isOpen = !item.isOpen"
+            @mouseover="closeAllDropdown(), (item.isOpen = true)"
+          >
+            <span
+              class="group-hover:text-purple-600 transition-colors duration-500"
+            >
+              {{ item.name }}
+            </span>
+            <Icon
+              name="ic:round-keyboard-arrow-up"
+              size="24"
+              class="transition-all duration-500 group-hover:text-purple-600"
+              :class="item.isOpen ? 'rotate-180 text-purple-600' : ''"
+            />
+          </button>
+
+          <div
+            v-if="item.isOpen"
+            class="dark:bg-dark p-2 outline-white outline absolute rounded top-16"
+            @mouseleave="item.isOpen = false"
+          >
+            <ul>
+              <li
+                v-for="challenge in item.challenges"
+                class="hover:bg-purple-600 p-2 rounded dark:text-white text-lg text-dark cursor-pointer"
+                @click="$router.push(challenge.href)"
+              >
+                {{ challenge.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a
+          v-else
+          :href="item.href"
+          class="dark:text-white text-lg text-dark"
+          @mouseover="closeAllDropdown()"
+        >
+          <span class="transition-colors duration-500 hover:text-purple-600">{{
+            item.name
+          }}</span>
+        </a>
+      </template>
     </div>
     <ColorModeToggle />
-    <button
+    <!-- <button
       class="block md:hidden text-white"
       @click="toggleMenu"
     >
@@ -53,32 +85,7 @@
           ></path>
         </template>
       </svg>
-    </button>
-    <div
-      v-if="isMenuOpen"
-      class="md:flex md:items-center md:w-auto hidden"
-    >
-      <a
-        href="#"
-        class="text-white font-bold text-lg"
-        >Home</a
-      >
-      <a
-        href="#"
-        class="ml-4 text-gray-300 hover:text-white"
-        >About</a
-      >
-      <a
-        href="#"
-        class="ml-4 text-gray-300 hover:text-white"
-        >Services</a
-      >
-      <a
-        href="#"
-        class="ml-4 text-gray-300 hover:text-white"
-        >Contact</a
-      >
-    </div>
+    </button> -->
   </nav>
 </template>
 
@@ -87,13 +94,47 @@ import { ref } from 'vue'
 
 const isMenuOpen = ref(false)
 
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
+// const toggleMenu = () => {
+//   isMenuOpen.value = !isMenuOpen.value
+// }
+
+function closeAllDropdown() {
+  navigationItems.value.forEach((item) => (item.isOpen = false))
 }
+
+const navigationItems = ref([
+  {
+    name: 'Home',
+    href: '/'
+  },
+  {
+    name: 'Challenges',
+    href: '#',
+    isOpen: false,
+    challenges: [
+      {
+        name: 'Multi Step Form',
+        href: '/multi-step-form'
+      },
+      {
+        name: 'Challenge 2',
+        href: 'challenge-2'
+      },
+      {
+        name: 'Challenge 3',
+        href: 'challenge-3'
+      }
+    ]
+  },
+  {
+    name: 'Services',
+    href: '#'
+  },
+  {
+    name: 'Contact',
+    href: '#'
+  }
+])
 </script>
 
-<style scoped>
-a {
-  @apply text-dark dark:text-white hover:text-white;
-}
-</style>
+<style scoped></style>
