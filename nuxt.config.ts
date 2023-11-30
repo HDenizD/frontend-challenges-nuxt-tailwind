@@ -8,5 +8,5 @@ export default defineNuxtConfig({
     classSuffix: '',
     storageKey: 'nuxt-color-mode'
   },
-  css: ['~/assets/css/global.css']
+  css: ['~/assets/css/main.css']
 })
