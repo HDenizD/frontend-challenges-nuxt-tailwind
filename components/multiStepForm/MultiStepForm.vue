@@ -6,7 +6,10 @@
     <div class="flex flex-col mx-20 pt-10 w-full justify-between">
       <!-- Stepper Content -->
       <div>
-        <MultiStepFormPersonalInfo v-if="stepIndex === 0" />
+        <MultiStepFormPersonalInfo
+          v-if="stepIndex === 0"
+          v-model:personalInfo="personalInfo"
+        />
         <MultiStepFormSelectPlan v-if="stepIndex === 1" />
         <!-- <MultiStepFormAddons /> -->
         <!-- <MultiStepFormSummary /> -->
