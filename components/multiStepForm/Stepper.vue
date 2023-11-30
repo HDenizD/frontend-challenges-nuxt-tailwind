@@ -7,10 +7,11 @@
         class="flex items-center gap-5 mb-7"
       >
         <div
-          class="rounded-full bg-blue-300 text-lg text-bold w-[40px] h-[40px] flex justify-center items-center text-white"
+          class="rounded-full bg-blue-300 text-lg font-bold w-[2.5rem] h-[2.5rem] flex justify-center items-center"
           :class="{
             'bg-blue-300 text-black': step.isActive,
-            'outline outline-1 bg-transparent outline-white': !step.isActive
+            'outline outline-1 bg-transparent outline-white text-white':
+              !step.isActive
           }"
         >
           {{ index + 1 }}
@@ -23,13 +24,15 @@
         </div>
       </li>
     </ul>
+    <button @click="cycleForwardTroughSteps()">Forward</button>
+    <button @click="cycleBackwardTroughSteps()">Backward</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-const activeStep = ref(0)
+const activeIndex = ref(0)
 
 const steps = ref([
   { name: 'Your Info', value: 'info', isActive: true },
@@ -37,6 +40,23 @@ const steps = ref([
   { name: 'Add-Ons', value: 'addons', isActive: false },
   { name: 'Summary', value: 'summary', isActive: false }
 ])
+
+const activeStep = computed(() => steps.value[activeIndex.value])
+
+function cycleForwardTroughSteps() {
+  if (activeIndex.value < steps.value.length - 1) {
+    steps.value[activeIndex.value].isActive = false
+    activeIndex.value++
+    steps.value[activeIndex.value].isActive = true
+  }
+}
+function cycleBackwardTroughSteps() {
+  if (activeIndex.value > 0) {
+    steps.value[activeIndex.value].isActive = false
+    activeIndex.value--
+    steps.value[activeIndex.value].isActive = true
+  }
+}
 </script>
 
 <style scoped>
@@ -46,6 +66,6 @@ const steps = ref([
   background-size: cover;
   background-position: center;
   height: 100%;
-  width: 270px;
+  width: 16.875rem;
 }
 </style>
