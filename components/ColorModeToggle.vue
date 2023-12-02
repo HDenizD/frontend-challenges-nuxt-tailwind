@@ -29,10 +29,6 @@ function toggleDarkMode() {
     ? (colorMode.preference = 'light')
     : (colorMode.preference = 'dark')
 }
-
-onMounted(() => {
-  console.log(colorMode.preference)
-})
 </script>
 
 <style scoped></style>
