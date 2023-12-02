@@ -18,14 +18,14 @@
       <div class="flex w-full justify-between pb-3">
         <button
           v-if="stepIndex !== 0"
-          class="text-blue-900 hover:text-blue-700 font-bold py-3 px-5 rounded-lg"
+          class="text-blue-900 select-none hover:text-blue-700 font-bold py-3 px-5 rounded-lg"
           @click="stepIndex--"
         >
           Go Back
         </button>
         <button
           v-if="stepIndex !== 3"
-          class="bg-blue-900 hover:bg-blue-700 text-white py-3 px-5 rounded-lg ml-auto"
+          class="bg-blue-900 select-none hover:bg-blue-700 text-white py-3 px-5 rounded-lg ml-auto"
           @click="stepIndex++"
         >
           Next Step

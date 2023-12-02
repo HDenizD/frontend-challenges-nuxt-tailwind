@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex items-center justify-between border-2 border-dark dark:border-white dark:bg-dark rounded-b-lg bg-white p-4 h-16"
+    class="flex items-center justify-between border-dark dark:border-white dark:bg-dark bg-white p-4 h-16"
     @mouseleave="closeAllDropdown()"
   >
     <div class="hidden md:flex items-center justify-center w-full gap-10">
@@ -30,7 +30,7 @@
 
           <div
             v-if="item.isOpen"
-            class="dark:bg-dark p-2 outline-white outline absolute rounded top-16"
+            class="dark:bg-dark bg-white p-2 outline absolute rounded top-16"
             @mouseleave="item.isOpen = false"
           >
             <ul>
