@@ -17,6 +17,9 @@
         :type="type"
         :name="id"
         :id="id"
+        :class="{
+          'outline-red-500': errorMessages.length > 0
+        }"
         class="focus:ring-indigo-500 focus:outline-indigo-500 w-full outline outline-gray-300 outline-2 p-2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         :placeholder="placeholder"
         @input="errorMessages = []"
@@ -28,6 +31,7 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue'
+import type { z } from 'zod'
 
 const emit = defineEmits(['update:modelValue'])
 
@@ -39,17 +43,32 @@ const { validateEmail, validateString, validateStringNumbers } = useValidator()
 function validate() {
   errorMessages.value = []
 
+  function validator(
+    fn: (
+      value: string | number
+    ) => z.SafeParseError<string> | z.SafeParseSuccess<string>
+  ) {
+    const result = fn(inputValue.value)
+    if (result.success) {
+      emit('update:modelValue', result.data)
+    } else {
+      result.error.issues.map((issue: z.ZodIssue) => {
+        errorMessages.value.push(issue.message)
+      })
+    }
+  }
   switch (props.type) {
     case 'email':
-      const emailResult = validateEmail(inputValue.value)
-      if (emailResult.success) {
-        console.log(emailResult.data)
-        emit('update:modelValue', emailResult.data)
-      } else {
-        emailResult.error.issues.map((issue) => {
-          errorMessages.value.push(issue.message)
-        })
-      }
+      validator(() => validateEmail(inputValue.value))
+      // const emailResult = validateEmail(inputValue.value)
+      // if (emailResult.success) {
+      //   console.log(emailResult.data)
+      //   emit('update:modelValue', emailResult.data)
+      // } else {
+      //   emailResult.error.issues.map((issue) => {
+      //     errorMessages.value.push(issue.message)
+      //   })
+      // }
       break
 
     case 'number':

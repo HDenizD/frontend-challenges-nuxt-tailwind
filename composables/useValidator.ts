@@ -22,7 +22,6 @@ export function useValidator() {
   }
 
   function validateString(string: string) {
-    console.log(string)
     return stringSchema.safeParse(string)
   }
 
