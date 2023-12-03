@@ -3,32 +3,33 @@
   <p class="text-gray-400">
     Please provide your name, email address, and phone number.
   </p>
-  <form>
-    <div class="mt-7 flex flex-col gap-5">
-      <MultiStepFormBaseInput
-        v-model="personalInfo.name"
-        id="name"
-        label="Name"
-      />
-      <MultiStepFormBaseInput
-        v-model="personalInfo.email"
-        id="email"
-        type="email"
-        label="Email Address"
-      />
-      <MultiStepFormBaseInput
-        v-model="personalInfo.email"
-        id="email"
-        type="number"
-        label="Phone Number"
-        placeholder="e.g. +1 234 567 890"
-      />
-    </div>
-  </form>
+  <div class="mt-7 flex flex-col gap-5">
+    <MultiStepFormBaseInput
+      v-model="personalInfo.name"
+      id="name"
+      label="Name"
+    />
+    <MultiStepFormBaseInput
+      v-model="personalInfo.email"
+      id="email"
+      type="email"
+      label="Email Address"
+    />
+    <MultiStepFormBaseInput
+      v-model="personalInfo.phone"
+      id="phone"
+      type="number"
+      label="Phone Number"
+      placeholder="e.g. +1 234 567 890"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
-defineProps({
+import { z } from 'zod'
+const { emailSchema, numberSchema, stringSchema } = useValidator()
+
+const props = defineProps({
   personalInfo: {
     type: Object as PropType<{
       name: string
@@ -38,6 +39,29 @@ defineProps({
     required: true
   }
 })
+
+const emit = defineEmits(['is-valid'])
+
+const personalInfoSchema = z.object({
+  name: stringSchema,
+  email: emailSchema,
+  phone: numberSchema
+})
+
+watch(
+  () => props.personalInfo,
+  () => {
+    const result = personalInfoSchema.safeParse(props.personalInfo)
+    console.log(result)
+    emit('is-valid', result.success)
+  },
+  { deep: true }
+)
+
+// function handleSubmit() {
+//   const result = personalInfoSchema.safeParse(props.personalInfo)
+//   emit('is-valid', result.success)
+// }
 </script>
 
 <style scoped></style>

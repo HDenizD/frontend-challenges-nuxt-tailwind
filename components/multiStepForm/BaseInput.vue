@@ -31,54 +31,50 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { z } from 'zod'
 
 const emit = defineEmits(['update:modelValue'])
 
 const inputValue = ref('')
 const errorMessages = ref<string[]>([])
 
-const { validateEmail, validateString, validateStringNumbers } = useValidator()
+const { validateEmail, validateString, validateStringNumbers, validateNumber } =
+  useValidator()
 
 function validate() {
   errorMessages.value = []
 
-  function validator(
-    fn: (
-      value: string | number
-    ) => z.SafeParseError<string> | z.SafeParseSuccess<string>
-  ) {
-    const result = fn(inputValue.value)
-    if (result.success) {
-      emit('update:modelValue', result.data)
-    } else {
-      result.error.issues.map((issue: z.ZodIssue) => {
-        errorMessages.value.push(issue.message)
-      })
-    }
-  }
   switch (props.type) {
     case 'email':
-      validator(() => validateEmail(inputValue.value))
-      // const emailResult = validateEmail(inputValue.value)
-      // if (emailResult.success) {
-      //   console.log(emailResult.data)
-      //   emit('update:modelValue', emailResult.data)
-      // } else {
-      //   emailResult.error.issues.map((issue) => {
-      //     errorMessages.value.push(issue.message)
-      //   })
-      // }
+      const emailResult = validateEmail(inputValue.value)
+      if (emailResult.success) {
+        emit('update:modelValue', emailResult.data)
+      } else {
+        emailResult.error.issues.map((issue) => {
+          errorMessages.value.push(issue.message)
+        })
+      }
       break
 
     case 'number':
-      console.log(validateStringNumbers(inputValue.value))
-      validateStringNumbers(inputValue.value)
+      const numberResult = validateNumber(+inputValue.value)
+      if (numberResult.success) {
+        emit('update:modelValue', numberResult.data)
+      } else {
+        numberResult.error.issues.map((issue) => {
+          errorMessages.value.push(issue.message)
+        })
+      }
       break
 
     default:
-      console.log(validateString(inputValue.value))
-      validateString(inputValue.value)
+      const stringResult = validateString(inputValue.value)
+      if (stringResult.success) {
+        emit('update:modelValue', stringResult.data)
+      } else {
+        stringResult.error.issues.map((issue) => {
+          errorMessages.value.push(issue.message)
+        })
+      }
       break
   }
 }

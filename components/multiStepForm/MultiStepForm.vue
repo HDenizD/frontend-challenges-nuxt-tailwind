@@ -9,6 +9,7 @@
         <MultiStepFormPersonalInfo
           v-if="stepIndex === 0"
           v-model:personalInfo="personalInfo"
+          @is-valid="validationCheck.personalInfo = $event"
         />
         <MultiStepFormSelectPlan v-if="stepIndex === 1" />
         <!-- <MultiStepFormAddons /> -->
@@ -19,14 +20,14 @@
         <button
           v-if="stepIndex !== 0"
           class="text-blue-900 select-none hover:text-blue-700 font-bold py-3 px-5 rounded-lg"
-          @click="stepIndex--"
+          @click="cycleStepIndex('backward')"
         >
           Go Back
         </button>
         <button
           v-if="stepIndex !== 3"
           class="bg-blue-900 select-none hover:bg-blue-700 text-white py-3 px-5 rounded-lg ml-auto"
-          @click="stepIndex++"
+          @click="cycleStepIndex('forward')"
         >
           Next Step
         </button>
@@ -38,7 +39,22 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+function cycleStepIndex(direction: 'forward' | 'backward') {
+  if (direction === 'backward') {
+    stepIndex.value--
+  }
+  if (direction === 'forward') {
+    if (validationCheck.value.personalInfo) stepIndex.value++
+  }
+}
+
 const stepIndex = ref(0)
+
+const validationCheck = ref({
+  personalInfo: false,
+  plan: false,
+  addons: false
+})
 
 const personalInfo = ref({
   name: '',
