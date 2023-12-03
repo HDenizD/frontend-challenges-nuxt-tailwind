@@ -1,11 +1,16 @@
 <template>
   <div>
-    <label
-      for="name"
-      class="text-sm mb-2 block font-medium text-indigo-950"
-    >
-      {{ label }}
-    </label>
+    <div class="flex justify-between">
+      <label
+        for="name"
+        class="text-sm mb-2 block font-medium text-indigo-950"
+      >
+        {{ label }}
+      </label>
+      <div class="text-red-500 text-sm font-semibold">
+        {{ errorMessages.join(', ') }}
+      </div>
+    </div>
     <div class="mt-1">
       <input
         v-model="inputValue"
@@ -14,7 +19,7 @@
         :id="id"
         class="focus:ring-indigo-500 focus:outline-indigo-500 w-full outline outline-gray-300 outline-2 p-2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         :placeholder="placeholder"
-        @input="$emit('update:modelValue', inputValue)"
+        @input="errorMessages = []"
         @blur="validate"
       />
     </div>
@@ -27,19 +32,35 @@ import type { PropType } from 'vue'
 const emit = defineEmits(['update:modelValue'])
 
 const inputValue = ref('')
+const errorMessages = ref<string[]>([])
 
 const { validateEmail, validateString, validateStringNumbers } = useValidator()
 
 function validate() {
-  if (props.type === 'email') {
-    validateEmail(inputValue.value)
-    // emit('update:modelValue', validateEmail(inputValue.value))
-  } else if (props.type === 'number') {
-    console.log(validateStringNumbers(inputValue.value))
-    validateStringNumbers(inputValue.value)
-  } else {
-    console.log(validateString(inputValue.value))
-    validateString(inputValue.value)
+  errorMessages.value = []
+
+  switch (props.type) {
+    case 'email':
+      const emailResult = validateEmail(inputValue.value)
+      if (emailResult.success) {
+        console.log(emailResult.data)
+        emit('update:modelValue', emailResult.data)
+      } else {
+        emailResult.error.issues.map((issue) => {
+          errorMessages.value.push(issue.message)
+        })
+      }
+      break
+
+    case 'number':
+      console.log(validateStringNumbers(inputValue.value))
+      validateStringNumbers(inputValue.value)
+      break
+
+    default:
+      console.log(validateString(inputValue.value))
+      validateString(inputValue.value)
+      break
   }
 }
 

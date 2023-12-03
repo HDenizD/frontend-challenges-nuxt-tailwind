@@ -3,22 +3,22 @@ import { z } from 'zod'
 export function useValidator() {
   const emailSchema = z
     .string()
-    .min(1, { message: 'Email is required' })
+    .min(1, { message: 'This field is required' })
     .email({ message: 'Invalid email' })
 
-  const stringSchema = z.string()
-  const numberSchema = z.number()
-  const stringNumbersSchema = z.string().regex(/^[0-9]+$/, {
-    message: 'Only numbers are allowed'
-  })
+  const stringSchema = z.string().min(1, { message: 'Field is required' })
+  const numberSchema = z.number().min(1, { message: 'Field is required' })
+  const stringNumbersSchema = z
+    .string()
+    .regex(/^[0-9]+$/, {
+      message: 'Only numbers are allowed'
+    })
+    .min(1, { message: 'Field is required' })
 
-  function validateEmail(email: string) {
-    const result = emailSchema.safeParse(email)
-    if (!result.success) {
-      return result.error.issues
-    }
-    console.log(result)
-    return result
+  function validateEmail(
+    email: string
+  ): z.SafeParseSuccess<string> | z.SafeParseError<string> {
+    return emailSchema.safeParse(email)
   }
 
   function validateString(string: string) {
