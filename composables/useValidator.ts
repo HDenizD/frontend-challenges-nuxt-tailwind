@@ -31,7 +31,14 @@ export function useValidator() {
     return stringNumbersSchema.safeParse(stringNumbers)
   }
 
+  const personalInfoSchema = z.object({
+    name: stringSchema,
+    email: emailSchema,
+    phone: numberSchema
+  })
+
   return {
+    personalInfoSchema,
     emailSchema,
     stringSchema,
     numberSchema,

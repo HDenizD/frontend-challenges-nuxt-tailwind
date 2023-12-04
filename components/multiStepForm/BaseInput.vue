@@ -14,7 +14,6 @@
     <div class="mt-1">
       <input
         :value="modelValue"
-        ref="input"
         :type="type"
         :name="id"
         :id="id"
@@ -23,6 +22,9 @@
         }"
         class="focus:ring-indigo-500 focus:outline-indigo-500 w-full outline outline-gray-300 outline-2 p-2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         :placeholder="placeholder"
+        @input="
+          $emit('update:modelValue', ($event.target as HTMLInputElement)?.value)
+        "
         @blur="validate"
       />
     </div>
@@ -35,7 +37,7 @@ import type { PropType } from 'vue'
 const emit = defineEmits(['update:modelValue'])
 const props = defineProps({
   modelValue: {
-    type: [String, Number] as PropType<string | number | null>,
+    type: [String, Number, null] as PropType<string | number | null>,
     required: true
   },
   label: {
@@ -60,8 +62,6 @@ const props = defineProps({
   }
 })
 
-const input = ref<HTMLInputElement | null>(null)
-const inputValue = ref(props.modelValue)
 const errorMessages = ref<string[]>([])
 
 const { validateEmail, validateString, validateStringNumbers, validateNumber } =
@@ -72,7 +72,7 @@ function validate() {
 
   switch (props.type) {
     case 'email':
-      const emailResult = validateEmail(inputValue.value as string)
+      const emailResult = validateEmail(props.modelValue as string)
       if (emailResult.success) {
         emit('update:modelValue', emailResult.data)
       } else {
@@ -83,7 +83,7 @@ function validate() {
       break
 
     case 'number':
-      const numberResult = validateNumber(+inputValue.value)
+      const numberResult = validateNumber(+(props.modelValue as number))
       if (numberResult.success) {
         emit('update:modelValue', numberResult.data)
       } else {
@@ -94,7 +94,7 @@ function validate() {
       break
 
     default:
-      const stringResult = validateString(inputValue.value as string)
+      const stringResult = validateString(props.modelValue as string)
       if (stringResult.success) {
         emit('update:modelValue', stringResult.data)
       } else {

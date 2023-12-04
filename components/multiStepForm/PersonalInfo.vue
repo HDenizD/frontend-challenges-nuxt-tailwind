@@ -35,8 +35,6 @@ const { emailSchema, numberSchema, stringSchema } = useValidator()
 
 const { personalInfo } = useMultiStepForm()
 
-onMounted(() => {})
-
 const props = defineProps({
   forceValidation: {
     type: Boolean,
@@ -45,27 +43,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['is-valid'])
-
-const personalInfoSchema = z.object({
-  name: stringSchema,
-  email: emailSchema,
-  phone: numberSchema
-})
-
-// watch(
-//   () => props.personalInfo,
-//   () => {
-//     const result = personalInfoSchema.safeParse(props.personalInfo)
-//     console.log(result)
-//     emit('is-valid', result.success)
-//   },
-//   { deep: true }
-// )
-
-// function handleSubmit() {
-//   const result = personalInfoSchema.safeParse(props.personalInfo)
-//   emit('is-valid', result.success)
-// }
 </script>
 
 <style scoped></style>

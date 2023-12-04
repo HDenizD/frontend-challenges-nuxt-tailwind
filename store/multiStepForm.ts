@@ -1,12 +1,18 @@
 import { defineStore } from 'pinia'
+
+const { personalInfoSchema } = useValidator()
+
 export const useMultiStepForm = defineStore('multiStepForm', () => {
   function cycleStepIndex(direction: 'forward' | 'backward') {
     if (direction === 'backward') {
       stepIndex.value--
     }
     if (direction === 'forward') {
-      if (validationCheck.value.personalInfo) stepIndex.value++
-      else isTriggeredValidation.value = true
+      if (validationCheck.value.personalInfo) {
+        stepIndex.value++
+      } else {
+        isTriggeredValidation.value = true
+      }
     }
   }
 
@@ -42,6 +48,16 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     isMonthly: false,
     addons: []
   })
+
+  watch(
+    personalInfo,
+    () => {
+      const result = personalInfoSchema.safeParse(personalInfo.value)
+      validationCheck.value.personalInfo = result.success
+    },
+    { deep: true }
+  )
+
   return {
     cycleStepIndex,
     isTriggeredValidation,
