@@ -15,7 +15,7 @@
         <!-- <MultiStepFormSummary /> -->
         <!-- Stepper Content -->
       </div>
-      <div class="flex w-full py-20 justify-between pb-3">
+      <div class="flex w-full py-20 md:py-0 justify-between pb-3">
         <button
           v-if="multiStepFormStore.stepIndex !== 0"
           class="text-blue-900 select-none hover:text-blue-700 font-bold py-3 px-5 rounded-lg"
