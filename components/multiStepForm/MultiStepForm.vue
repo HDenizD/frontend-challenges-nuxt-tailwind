@@ -6,12 +6,9 @@
     <div class="flex flex-col mx-20 pt-10 w-full justify-between">
       <!-- Stepper Content -->
       <div>
-        <MultiStepFormPersonalInfo
-          v-if="stepIndex === 0"
-          v-model:personalInfo="personalInfo"
-          :force-validation="isTriggeredValidation"
-          @is-valid="validationCheck.personalInfo = $event"
-        />
+        <MultiStepFormPersonalInfo v-if="stepIndex === 0" />
+        <!-- @is-valid="validationCheck.personalInfo = $event" -->
+        <!-- :force-validation="isTriggeredValidation" -->
         <MultiStepFormSelectPlan v-if="stepIndex === 1" />
         <!-- <MultiStepFormAddons /> -->
         <!-- <MultiStepFormSummary /> -->
@@ -39,50 +36,53 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useMultiStepForm } from '@/store/multiStepForm'
 
-function cycleStepIndex(direction: 'forward' | 'backward') {
-  if (direction === 'backward') {
-    stepIndex.value--
-  }
-  if (direction === 'forward') {
-    if (validationCheck.value.personalInfo) stepIndex.value++
-    else isTriggeredValidation.value = true
-  }
-}
+const { stepIndex, cycleStepIndex } = useMultiStepForm()
 
-const isTriggeredValidation = ref(false)
-const stepIndex = ref(0)
+// function cycleStepIndex(direction: 'forward' | 'backward') {
+//   if (direction === 'backward') {
+//     stepIndex.value--
+//   }
+//   if (direction === 'forward') {
+//     if (validationCheck.value.personalInfo) stepIndex.value++
+//     else isTriggeredValidation.value = true
+//   }
+// }
 
-const validationCheck = ref({
-  personalInfo: false,
-  plan: false,
-  addons: false
-})
+// const isTriggeredValidation = ref(false)
+// const stepIndex = ref(0)
 
-const personalInfo = ref({
-  name: '',
-  email: '',
-  phone: null
-})
+// const validationCheck = ref({
+//   personalInfo: false,
+//   plan: false,
+//   addons: false
+// })
 
-const selectedPlan = ref({
-  plan: '',
-  price: 0,
-  isMonthly: false
-})
+// const personalInfo = ref({
+//   name: '',
+//   email: '',
+//   phone: null
+// })
 
-const addons = ref([])
+// const selectedPlan = ref({
+//   plan: '',
+//   price: 0,
+//   isMonthly: false
+// })
 
-// make computed property to sum
-const summary = ref({
-  name: '',
-  email: '',
-  phone: '',
-  plan: '',
-  price: 0,
-  isMonthly: false,
-  addons: []
-})
+// const addons = ref([])
+
+// // make computed property to sum
+// const summary = ref({
+//   name: '',
+//   email: '',
+//   phone: '',
+//   plan: '',
+//   price: 0,
+//   isMonthly: false,
+//   addons: []
+// })
 </script>
 
 <style scoped></style>

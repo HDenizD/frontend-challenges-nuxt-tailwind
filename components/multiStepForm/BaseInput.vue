@@ -23,7 +23,6 @@
         }"
         class="focus:ring-indigo-500 focus:outline-indigo-500 w-full outline outline-gray-300 outline-2 p-2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         :placeholder="placeholder"
-        @input="$emit('update:modelValue', modelValue)"
         @blur="validate"
       />
     </div>

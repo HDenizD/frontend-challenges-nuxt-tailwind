@@ -30,27 +30,14 @@
 
 <script setup lang="ts">
 import { z } from 'zod'
+import { useMultiStepForm } from '~/store/multiStepForm'
 const { emailSchema, numberSchema, stringSchema } = useValidator()
+
+const { personalInfo } = useMultiStepForm()
 
 onMounted(() => {})
 
 const props = defineProps({
-  modelValue: {
-    type: Object as PropType<{
-      name: string
-      email: string
-      phone: number | null
-    }>,
-    required: true
-  },
-  personalInfo: {
-    type: Object as PropType<{
-      name: string
-      email: string
-      phone: number | null
-    }>,
-    required: true
-  },
   forceValidation: {
     type: Boolean,
     default: false
@@ -65,15 +52,15 @@ const personalInfoSchema = z.object({
   phone: numberSchema
 })
 
-watch(
-  () => props.personalInfo,
-  () => {
-    const result = personalInfoSchema.safeParse(props.personalInfo)
-    console.log(result)
-    emit('is-valid', result.success)
-  },
-  { deep: true }
-)
+// watch(
+//   () => props.personalInfo,
+//   () => {
+//     const result = personalInfoSchema.safeParse(props.personalInfo)
+//     console.log(result)
+//     emit('is-valid', result.success)
+//   },
+//   { deep: true }
+// )
 
 // function handleSubmit() {
 //   const result = personalInfoSchema.safeParse(props.personalInfo)
