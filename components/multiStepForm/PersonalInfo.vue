@@ -29,9 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { z } from 'zod'
 import { useMultiStepForm } from '~/store/multiStepForm'
-const { emailSchema, numberSchema, stringSchema } = useValidator()
 
 const { personalInfo } = useMultiStepForm()
 

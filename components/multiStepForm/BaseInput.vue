@@ -33,6 +33,9 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue'
+import { useMultiStepForm } from '~/store/multiStepForm'
+
+const multiStepFormStore = useMultiStepForm()
 
 const emit = defineEmits(['update:modelValue'])
 const props = defineProps({
@@ -107,7 +110,7 @@ function validate() {
 }
 
 watch(
-  () => props.forceValidation,
+  () => multiStepFormStore.isForceValidation,
   (newValue) => {
     if (newValue) {
       validate()

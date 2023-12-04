@@ -11,12 +11,12 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
       if (validationCheck.value.personalInfo) {
         stepIndex.value++
       } else {
-        isTriggeredValidation.value = true
+        isForceValidation.value = true
       }
     }
   }
 
-  const isTriggeredValidation = ref(false)
+  const isForceValidation = ref(false)
   const stepIndex = ref(0)
 
   const validationCheck = ref({
@@ -59,8 +59,8 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
   )
 
   return {
+    isForceValidation,
     cycleStepIndex,
-    isTriggeredValidation,
     stepIndex,
     validationCheck,
     personalInfo,
