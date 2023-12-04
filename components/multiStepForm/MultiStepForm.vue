@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex rounded-lg max-w-[57.5rem] h-[36.875rem] shadow-lg shadow-black bg-white text-dark mx-auto p-4"
+    class="md:flex md:rounded-lg md:max-w-[57.5rem] md:h-[36.875rem] shadow-lg shadow-black bg-white text-dark mx-auto p-0 md:p-4"
   >
     <MultiStepFormStepper :step-index="multiStepFormStore.stepIndex" />
     <div class="flex flex-col mx-20 pt-10 w-full justify-between">

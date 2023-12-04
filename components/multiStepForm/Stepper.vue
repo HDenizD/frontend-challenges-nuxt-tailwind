@@ -1,6 +1,8 @@
 <template>
-  <div class="background-image p-9 rounded-xl">
-    <ul>
+  <div
+    class="background-image bg-center bg-repeat bg-cover md:static min-w-full relative md:min-w-[280px] p-9 md:rounded-xl md:h-full h-[300px]"
+  >
+    <ul class="flex md:block">
       <li
         v-for="(step, index) in steps"
         :key="step.value"
@@ -16,7 +18,7 @@
         >
           {{ index + 1 }}
         </div>
-        <div>
+        <div class="hidden md:block">
           <p class="text-white font-light">STEP {{ index + 1 }}</p>
           <p class="text-white font-bold uppercase tracking-widest">
             {{ step.name }}
@@ -65,10 +67,5 @@ const steps = ref([
 <style scoped>
 .background-image {
   background-image: url('./../../challenges/multi-step-form/assets/images/bg-sidebar-desktop.svg');
-  background-repeat: none;
-  background-size: cover;
-  background-position: center;
-  height: 100%;
-  min-width: 280px;
 }
 </style>
