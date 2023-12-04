@@ -4,21 +4,21 @@
   >
     <MultiStepFormStepper :step-index="multiStepFormStore.stepIndex" />
     <div
-      class="flex flex-col md:px-20 px-7 pt-10 w-full justify-between bg-[#ebf4fb] md:bg-white"
+      class="flex flex-col md:px-20 px-5 pt-10 w-full justify-between bg-[#ebf4fb] md:bg-white md:h-auto"
     >
       <!-- Stepper Content 
       -->
-      <div class="bg-white p-8 rounded-xl">
+      <div class="bg-white p-8 -top-28 relative md:static rounded-xl">
         <MultiStepFormPersonalInfo v-if="multiStepFormStore.stepIndex === 0" />
         <MultiStepFormSelectPlan v-if="multiStepFormStore.stepIndex === 1" />
         <!-- <MultiStepFormAddons /> -->
         <!-- <MultiStepFormSummary /> -->
         <!-- Stepper Content -->
       </div>
-      <div class="flex w-full py-20 md:py-0 justify-between pb-3">
+      <div class="flex fixed bottom-0 md:py-0 justify-between pb-3">
         <button
           v-if="multiStepFormStore.stepIndex !== 0"
-          class="text-blue-900 select-none hover:text-blue-700 font-bold py-3 px-5 rounded-lg"
+          class="text-blue-900 select-none hover:text-blue-700 font-bold py-3 px-5 rounded-lg ml-auto"
           @click="multiStepFormStore.cycleStepIndex('backward')"
         >
           Go Back

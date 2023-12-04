@@ -1,6 +1,6 @@
 <template>
   <div
-    class="background-image md:bg-center bg-bottom bg-repeat bg-cover bg-clip-content md:bg-clip-border md:static min-w-full relative md:min-w-[280px] p-9 md:rounded-xl md:h-full h-[300px]"
+    class="background-image md:bg-center bg-bottom bg-repeat bg-cover md:bg-clip-border md:static min-w-full relative md:min-w-[280px] p-9 md:rounded-xl md:h-full h-[300px]"
   >
     <ul class="flex md:block">
       <li
@@ -66,6 +66,12 @@ const steps = ref([
 
 <style scoped>
 .background-image {
-  background-image: url('./../../challenges/multi-step-form/assets/images/bg-sidebar-desktop.svg');
+  background-image: url('./../../challenges/multi-step-form/assets/images/bg-sidebar-mobile.svg');
+}
+
+@screen md {
+  .background-image {
+    background-image: url('./../../challenges/multi-step-form/assets/images/bg-sidebar-desktop.svg');
+  }
 }
 </style>
