@@ -9,6 +9,7 @@
         <MultiStepFormPersonalInfo
           v-if="stepIndex === 0"
           v-model:personalInfo="personalInfo"
+          :force-validation="isTriggeredValidation"
           @is-valid="validationCheck.personalInfo = $event"
         />
         <MultiStepFormSelectPlan v-if="stepIndex === 1" />
@@ -45,9 +46,11 @@ function cycleStepIndex(direction: 'forward' | 'backward') {
   }
   if (direction === 'forward') {
     if (validationCheck.value.personalInfo) stepIndex.value++
+    else isTriggeredValidation.value = true
   }
 }
 
+const isTriggeredValidation = ref(false)
 const stepIndex = ref(0)
 
 const validationCheck = ref({
@@ -59,7 +62,7 @@ const validationCheck = ref({
 const personalInfo = ref({
   name: '',
   email: '',
-  phone: ''
+  phone: null
 })
 
 const selectedPlan = ref({

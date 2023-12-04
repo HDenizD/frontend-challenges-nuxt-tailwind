@@ -13,7 +13,8 @@
     </div>
     <div class="mt-1">
       <input
-        v-model="inputValue"
+        :value="modelValue"
+        ref="input"
         :type="type"
         :name="id"
         :id="id"
@@ -22,7 +23,7 @@
         }"
         class="focus:ring-indigo-500 focus:outline-indigo-500 w-full outline outline-gray-300 outline-2 p-2 rounded-md [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         :placeholder="placeholder"
-        @input="errorMessages = []"
+        @input="$emit('update:modelValue', modelValue)"
         @blur="validate"
       />
     </div>
@@ -33,8 +34,35 @@
 import type { PropType } from 'vue'
 
 const emit = defineEmits(['update:modelValue'])
+const props = defineProps({
+  modelValue: {
+    type: [String, Number] as PropType<string | number | null>,
+    required: true
+  },
+  label: {
+    type: String,
+    required: true
+  },
+  placeholder: {
+    type: String,
+    default: ''
+  },
+  id: {
+    type: String,
+    required: true
+  },
+  type: {
+    type: [String, Number] as PropType<'text' | 'number' | 'email'>,
+    default: 'text'
+  },
+  forceValidation: {
+    type: Boolean,
+    default: false
+  }
+})
 
-const inputValue = ref('')
+const input = ref<HTMLInputElement | null>(null)
+const inputValue = ref(props.modelValue)
 const errorMessages = ref<string[]>([])
 
 const { validateEmail, validateString, validateStringNumbers, validateNumber } =
@@ -45,7 +73,7 @@ function validate() {
 
   switch (props.type) {
     case 'email':
-      const emailResult = validateEmail(inputValue.value)
+      const emailResult = validateEmail(inputValue.value as string)
       if (emailResult.success) {
         emit('update:modelValue', emailResult.data)
       } else {
@@ -67,7 +95,7 @@ function validate() {
       break
 
     default:
-      const stringResult = validateString(inputValue.value)
+      const stringResult = validateString(inputValue.value as string)
       if (stringResult.success) {
         emit('update:modelValue', stringResult.data)
       } else {
@@ -79,24 +107,14 @@ function validate() {
   }
 }
 
-const props = defineProps({
-  label: {
-    type: String,
-    required: true
-  },
-  placeholder: {
-    type: String,
-    default: ''
-  },
-  id: {
-    type: String,
-    required: true
-  },
-  type: {
-    type: [String, Number] as PropType<'text' | 'number' | 'email'>,
-    default: 'text'
+watch(
+  () => props.forceValidation,
+  (newValue) => {
+    if (newValue) {
+      validate()
+    }
   }
-})
+)
 </script>
 
 <style scoped></style>

@@ -8,12 +8,14 @@
       v-model="personalInfo.name"
       id="name"
       label="Name"
+      :force-validation="forceValidation"
     />
     <MultiStepFormBaseInput
       v-model="personalInfo.email"
       id="email"
       type="email"
       label="Email Address"
+      :force-validation="forceValidation"
     />
     <MultiStepFormBaseInput
       v-model="personalInfo.phone"
@@ -21,6 +23,7 @@
       type="number"
       label="Phone Number"
       placeholder="e.g. +1 234 567 890"
+      :force-validation="forceValidation"
     />
   </div>
 </template>
@@ -29,14 +32,28 @@
 import { z } from 'zod'
 const { emailSchema, numberSchema, stringSchema } = useValidator()
 
+onMounted(() => {})
+
 const props = defineProps({
+  modelValue: {
+    type: Object as PropType<{
+      name: string
+      email: string
+      phone: number | null
+    }>,
+    required: true
+  },
   personalInfo: {
     type: Object as PropType<{
       name: string
       email: string
-      phone: string
+      phone: number | null
     }>,
     required: true
+  },
+  forceValidation: {
+    type: Boolean,
+    default: false
   }
 })
 
