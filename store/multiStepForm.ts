@@ -28,7 +28,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
   const personalInfo = ref({
     name: '',
     email: '',
-    phone: null
+    phone: ''
   })
 
   const selectedPlan = ref({

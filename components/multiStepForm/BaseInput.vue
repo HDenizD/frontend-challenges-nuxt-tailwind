@@ -40,7 +40,7 @@ const multiStepFormStore = useMultiStepForm()
 const emit = defineEmits(['update:modelValue'])
 const props = defineProps({
   modelValue: {
-    type: [String, Number, null] as PropType<string | number | null>,
+    type: String,
     required: true
   },
   label: {
@@ -59,7 +59,7 @@ const props = defineProps({
     type: [String, Number] as PropType<'text' | 'number' | 'email'>,
     default: 'text'
   },
-  forceValidation: {
+  isUseStringNumbersValidator: {
     type: Boolean,
     default: false
   }
@@ -67,11 +67,23 @@ const props = defineProps({
 
 const errorMessages = ref<string[]>([])
 
-const { validateEmail, validateString, validateStringNumbers, validateNumber } =
+const { validateEmail, validateString, validateNumber, validateStringNumbers } =
   useValidator()
 
 function validate() {
   errorMessages.value = []
+
+  if (props.isUseStringNumbersValidator) {
+    const numberResult = validateStringNumbers(props.modelValue as string)
+    if (numberResult.success) {
+      emit('update:modelValue', numberResult.data)
+    } else {
+      numberResult.error.issues.map((issue) => {
+        errorMessages.value.push(issue.message)
+      })
+    }
+    return
+  }
 
   switch (props.type) {
     case 'email':
@@ -86,7 +98,7 @@ function validate() {
       break
 
     case 'number':
-      const numberResult = validateNumber(+(props.modelValue as number))
+      const numberResult = validateNumber(+props.modelValue as number)
       if (numberResult.success) {
         emit('update:modelValue', numberResult.data)
       } else {

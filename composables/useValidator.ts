@@ -7,13 +7,13 @@ export function useValidator() {
     .email({ message: 'Invalid email' })
 
   const stringSchema = z.string().min(1, { message: 'This field is required' })
-  const numberSchema = z.number().min(6, { message: 'This field is required' })
+  const numberSchema = z.coerce.number().min(6, { message: 'min 6 numbers' })
   const stringNumbersSchema = z
     .string()
-    .regex(/^[0-9]+$/, {
+    .min(6, { message: 'at least 6 numbers' })
+    .regex(/^[0-9\s\+]*$/, {
       message: 'Only numbers are allowed'
     })
-    .min(6, { message: 'This field is required' })
 
   function validateEmail(email: string) {
     return emailSchema.safeParse(email)
@@ -34,7 +34,7 @@ export function useValidator() {
   const personalInfoSchema = z.object({
     name: stringSchema,
     email: emailSchema,
-    phone: numberSchema
+    phone: stringNumbersSchema
   })
 
   return {

@@ -5,25 +5,23 @@
   </p>
   <div class="mt-7 flex flex-col gap-5">
     <MultiStepFormBaseInput
-      v-model="personalInfo.name"
+      v-model.trim="personalInfo.name"
       id="name"
       label="Name"
-      :force-validation="forceValidation"
     />
     <MultiStepFormBaseInput
-      v-model="personalInfo.email"
+      v-model.trim="personalInfo.email"
       id="email"
       type="email"
       label="Email Address"
-      :force-validation="forceValidation"
     />
     <MultiStepFormBaseInput
-      v-model="personalInfo.phone"
+      v-model.trim="personalInfo.phone"
       id="phone"
-      type="number"
+      type="text"
+      is-use-string-numbers-validator
       label="Phone Number"
       placeholder="e.g. +1 234 567 890"
-      :force-validation="forceValidation"
     />
   </div>
 </template>
