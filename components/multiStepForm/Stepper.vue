@@ -1,6 +1,6 @@
 <template>
   <div
-    class="background-image md:bg-center bg-bottom bg-repeat bg-cover md:bg-clip-border md:static min-w-full relative md:min-w-[280px] p-9 md:rounded-xl md:h-full h-[300px]"
+    class="background-image md:bg-center bg-bottom bg-repeat bg-cover md:bg-clip-border md:static min-w-full relative md:min-w-[280px] p-9 md:rounded-xl md:h-full h-48"
   >
     <ul class="flex md:block">
       <li

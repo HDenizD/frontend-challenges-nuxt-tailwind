@@ -2,7 +2,7 @@
   <header class="sticky top-0 z-50">
     <Navigation />
   </header>
-  <main class="p-3 dark:bg-dark bg-white dark:text-white text-dark">
+  <main class="md:p-3 dark:bg-dark bg-white dark:text-white text-dark">
     <slot />
   </main>
   <footer></footer>
