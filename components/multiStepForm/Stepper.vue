@@ -2,7 +2,7 @@
   <div
     class="background-image md:bg-center bg-bottom bg-repeat bg-cover md:bg-clip-border md:static min-w-full relative md:min-w-[280px] p-9 md:rounded-xl md:h-full h-48"
   >
-    <ul class="flex md:block">
+    <ul class="flex gap-x-5 relative top-4 justify-center md:block">
       <li
         v-for="(step, index) in steps"
         :key="step.value"

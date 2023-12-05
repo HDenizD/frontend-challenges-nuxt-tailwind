@@ -16,7 +16,7 @@
         <!-- Stepper Content -->
       </div>
       <div
-        class="flex fixed w-full bottom-0 md:static md:py-0 justify-between p-4 bg-white shadow-md shadow-black"
+        class="flex fixed w-full bottom-0 md:static md:py-0 justify-between p-4 bg-white md:shadow-none shadow-md shadow-black"
       >
         <button
           v-if="multiStepFormStore.stepIndex !== 0"
