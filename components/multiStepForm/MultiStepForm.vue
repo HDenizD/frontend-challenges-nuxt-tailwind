@@ -1,14 +1,14 @@
 <template>
   <div
-    class="md:flex md:rounded-lg md:max-w-[57.5rem] md:h-[36.875rem] md:shadow-lg shadow-black bg-white text-dark mx-auto p-0 md:p-4"
+    class="md:flex md:rounded-lg md:max-w-[59rem] md:h-[36.875rem] md:shadow-lg shadow-black bg-white text-dark mx-auto p-0 md:p-4"
   >
     <MultiStepFormStepper :step-index="multiStepFormStore.stepIndex" />
     <div
-      class="inline-flex flex-col md:px-20 w-full justify-between bg-[#ebf4fb] md:bg-white h-[70vh] md:h-auto"
+      class="inline-flex flex-col md:mx-20 w-full justify-between bg-[#ebf4fb] md:bg-white h-[70vh] md:h-auto"
     >
       <!-- Stepper Content 
       -->
-      <div class="bg-white p-8 my-5 mx-5 -top-20 relative md:static rounded-xl">
+      <div class="bg-white p-8 my-5 -top-20 relative md:static rounded-xl">
         <MultiStepFormPersonalInfo v-if="multiStepFormStore.stepIndex === 0" />
         <MultiStepFormSelectPlan v-if="multiStepFormStore.stepIndex === 1" />
         <!-- <MultiStepFormAddons /> -->
@@ -16,7 +16,7 @@
         <!-- Stepper Content -->
       </div>
       <div
-        class="flex fixed w-full bottom-0 md:static md:py-0 justify-between p-4 bg-white md:shadow-none shadow-md shadow-black"
+        class="flex fixed md:static w-full bottom-0 md:py-0 justify-between p-4 bg-white md:shadow-none shadow-md shadow-black"
       >
         <button
           v-if="multiStepFormStore.stepIndex !== 0"

@@ -1,5 +1,5 @@
 <template>
-  <div class="outline outline-2 rounded-md outline-indigo-600 w-[8rem] p-3">
+  <div class="outline outline-2 rounded-md outline-indigo-600 w-[7.5rem] p-3">
     <img
       :src="selectedIcon"
       alt=""

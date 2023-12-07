@@ -3,11 +3,23 @@
     title="Select Plan"
     sub-title="You have the option of montly or yearly billing."
   >
-    <MultiStepFormSelectPlanCard
-      label="Arcade"
-      :price-month="9"
-      icon="arcade"
-    />
+    <div class="flex justify-center gap-5">
+      <MultiStepFormSelectPlanCard
+        label="Arcade"
+        :price-month="9"
+        icon="arcade"
+      />
+      <MultiStepFormSelectPlanCard
+        label="Arcade"
+        :price-month="12"
+        icon="arcade"
+      />
+      <MultiStepFormSelectPlanCard
+        label="Arcade"
+        :price-month="15"
+        icon="arcade"
+      />
+    </div>
   </MultiStepFormDefaultStep>
 </template>
 
