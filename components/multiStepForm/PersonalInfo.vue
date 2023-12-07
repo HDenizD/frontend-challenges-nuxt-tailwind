@@ -31,13 +31,6 @@ import { useMultiStepForm } from '~/store/multiStepForm'
 
 const { personalInfo } = useMultiStepForm()
 
-const props = defineProps({
-  forceValidation: {
-    type: Boolean,
-    default: false
-  }
-})
-
 const emit = defineEmits(['is-valid'])
 </script>
 
