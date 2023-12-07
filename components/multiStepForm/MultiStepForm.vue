@@ -4,7 +4,7 @@
   >
     <MultiStepFormStepper :step-index="multiStepFormStore.stepIndex" />
     <div
-      class="inline-flex flex-col md:px-20 w-full justify-between bg-[#ebf4fb] md:bg-white"
+      class="inline-flex flex-col md:px-20 w-full justify-between bg-[#ebf4fb] md:bg-white h-[70vh] md:h-auto"
     >
       <!-- Stepper Content 
       -->
@@ -42,4 +42,4 @@ import { useMultiStepForm } from '@/store/multiStepForm'
 const multiStepFormStore = useMultiStepForm()
 </script>
 
-<style scoped></style>
+<style></style>
