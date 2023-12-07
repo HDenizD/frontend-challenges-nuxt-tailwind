@@ -1,9 +1,8 @@
 <template>
-  <div class="pb-1 text-3xl font-bold text-indigo-950">Personal info</div>
-  <p class="text-gray-400">
-    Please provide your name, email address, and phone number.
-  </p>
-  <div class="mt-7 flex flex-col gap-5">
+  <MultiStepFormDefaultStep
+    title="Personal info"
+    sub-title="Please provide your name, email address, and phone number."
+  >
     <MultiStepFormBaseInput
       v-model.trim="personalInfo.name"
       id="name"
@@ -23,7 +22,7 @@
       label="Phone Number"
       placeholder="e.g. +1 234 567 890"
     />
-  </div>
+  </MultiStepFormDefaultStep>
 </template>
 
 <script setup lang="ts">

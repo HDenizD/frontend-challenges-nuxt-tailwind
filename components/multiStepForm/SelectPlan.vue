@@ -1,6 +1,14 @@
 <template>
-  <div class="pb-1 text-3xl font-bold text-indigo-950">Select Plan</div>
-  <p class="text-gray-400">You have the option of montly or yearly billing.</p>
+  <MultiStepFormDefaultStep
+    title="Select Plan"
+    sub-title="You have the option of montly or yearly billing."
+  >
+    <MultiStepFormSelectPlanCard
+      label="Arcade"
+      :price-month="9"
+      icon="arcade"
+    />
+  </MultiStepFormDefaultStep>
 </template>
 
 <script setup lang="ts"></script>

@@ -8,6 +8,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
       stepIndex.value--
     }
     if (direction === 'forward') {
+      stepIndex.value++
       if (validationCheck.value.personalInfo) {
         stepIndex.value++
       } else {
