@@ -8,21 +8,33 @@
         label="Arcade"
         :price-month="9"
         icon="arcade"
+        :is-selected="selectedPlan === 'arcade'"
+        @click="selectPlan('arcade')"
       />
       <MultiStepFormSelectPlanCard
-        label="Arcade"
+        label="Advanced"
         :price-month="12"
-        icon="arcade"
+        icon="advanced"
+        :is-selected="selectedPlan === 'advanced'"
+        @click="selectPlan('advanced')"
       />
       <MultiStepFormSelectPlanCard
-        label="Arcade"
+        label="Pro"
         :price-month="15"
-        icon="arcade"
+        icon="pro"
+        :is-selected="selectedPlan === 'pro'"
+        @click="selectPlan('pro')"
       />
     </div>
   </MultiStepFormDefaultStep>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const selectedPlan = ref('arcade')
+
+function selectPlan(plan: 'arcade' | 'advanced' | 'pro') {
+  selectedPlan.value = plan
+}
+</script>
 
 <style scoped></style>

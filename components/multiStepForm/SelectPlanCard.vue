@@ -1,5 +1,8 @@
 <template>
-  <div class="outline outline-2 rounded-md outline-indigo-600 w-[7.5rem] p-3">
+  <div
+    class="hover:bg-indigo-100 cursor-pointer outline outline-2 rounded-md outline-indigo-600 w-[7.5rem] p-3"
+    :class="{ 'bg-indigo-100': isSelected }"
+  >
     <img
       :src="selectedIcon"
       alt=""
@@ -26,6 +29,10 @@ const props = defineProps({
   icon: {
     type: String as PropType<'arcade' | 'advanced' | 'pro'>,
     required: true
+  },
+  isSelected: {
+    type: Boolean,
+    default: false
   },
   label: {
     type: String,
