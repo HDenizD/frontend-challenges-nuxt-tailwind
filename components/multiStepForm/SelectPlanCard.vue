@@ -32,7 +32,7 @@ import proIcon from './../../challenges/multi-step-form/assets/images/icon-pro.s
 import type { PropType } from 'vue'
 const props = defineProps({
   icon: {
-    type: String as PropType<'arcade' | 'advanced' | 'pro'>,
+    type: String as PropType<'arcade' | 'advanced' | 'pro' | undefined>,
     required: true
   },
   isSelected: {
@@ -40,7 +40,7 @@ const props = defineProps({
     default: false
   },
   label: {
-    type: String,
+    type: String as PropType<string | undefined>,
     required: true
   },
   priceMonth: {
