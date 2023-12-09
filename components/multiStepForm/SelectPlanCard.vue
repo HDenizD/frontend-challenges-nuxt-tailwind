@@ -1,6 +1,6 @@
 <template>
   <div
-    class="hover:bg-indigo-100 cursor-pointer outline outline-2 rounded-md outline-indigo-600 w-[7.5rem] p-3 select-none"
+    class="hover:bg-indigo-100 cursor-pointer outline outline-2 rounded-md outline-indigo-600 md:w-[7.5rem] flex mb-4 md:mb-0 md:block items-center p-3 select-none"
     :class="{ 'bg-indigo-100': isSelected }"
   >
     <img
@@ -8,7 +8,7 @@
       alt=""
     />
 
-    <div class="mt-5">
+    <div class="md:mt-5 ml-3 md:ml-0">
       <div class="text-base font-bold text-indigo-900">{{ label }}</div>
       <div class="text-sm text-gray-500">
         <p class="my-0.5">

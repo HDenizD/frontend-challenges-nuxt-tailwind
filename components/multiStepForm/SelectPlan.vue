@@ -4,7 +4,7 @@
     sub-title="You have the option of montly or yearly billing."
   >
     <div class="relative">
-      <div class="flex justify-center gap-5">
+      <div class="md:flex justify-center gap-5">
         <MultiStepFormSelectPlanCard
           v-for="plan in plans"
           :key="plan.label"
@@ -17,7 +17,7 @@
         />
       </div>
       <div
-        class="h-10 absolute w-full top-44 bg-blue-50 rounded-md gap-5 flex items-center justify-center"
+        class="h-10 md:absolute w-full md:top-44 bg-blue-50 rounded-md gap-5 flex items-center justify-center"
       >
         <div
           class="font-bold text-blue-950 cursor-pointer select-none"

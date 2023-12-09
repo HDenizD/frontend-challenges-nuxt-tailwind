@@ -4,11 +4,10 @@
   >
     <MultiStepFormStepper :step-index="multiStepFormStore.stepIndex" />
     <div
-      class="inline-flex flex-col md:mx-20 w-full justify-between bg-[#ebf4fb] md:bg-white h-[70vh] md:h-auto"
+      class="inline-flex flex-col md:mx-20 w-full justify-between bg-[#ebf4fb] md:bg-white md:h-auto"
     >
-      <!-- Stepper Content 
-      -->
-      <div class="bg-white p-8 my-5 -top-20 relative md:static rounded-xl">
+      <!-- Stepper Content -->
+      <div class="bg-white p-8 my-5 mx-5 -top-20 relative md:static rounded-xl">
         <MultiStepFormPersonalInfo v-if="multiStepFormStore.stepIndex === 0" />
         <MultiStepFormSelectPlan v-if="multiStepFormStore.stepIndex === 1" />
         <!-- <MultiStepFormAddons /> -->
@@ -40,6 +39,20 @@
 <script setup lang="ts">
 import { useMultiStepForm } from '@/store/multiStepForm'
 const multiStepFormStore = useMultiStepForm()
+
+function detectTailwindMobileAndChangerBgColor() {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches
+  if (isMobile) {
+    const mainElement = document.querySelector('body')
+    if (mainElement) {
+      mainElement.style.backgroundColor = '#ebf4fb'
+    }
+  }
+}
+
+onMounted(() => {
+  detectTailwindMobileAndChangerBgColor()
+})
 </script>
 
 <style></style>
