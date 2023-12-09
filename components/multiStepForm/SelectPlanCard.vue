@@ -1,6 +1,6 @@
 <template>
   <div
-    class="hover:bg-indigo-100 cursor-pointer outline outline-2 rounded-md outline-indigo-600 w-[7.5rem] p-3"
+    class="hover:bg-indigo-100 cursor-pointer outline outline-2 rounded-md outline-indigo-600 w-[7.5rem] p-3 select-none"
     :class="{ 'bg-indigo-100': isSelected }"
   >
     <img
@@ -11,10 +11,15 @@
     <div class="mt-5">
       <div class="text-base font-bold text-indigo-900">{{ label }}</div>
       <div class="text-sm text-gray-500">
-        <p>
+        <p class="my-0.5">
           {{ isPriceYearly ? `$${priceMonth * 12}/yr` : `$${priceMonth}/mo` }}
         </p>
-        <p v-if="isPriceYearly">2 months free</p>
+        <p
+          v-if="isPriceYearly"
+          class="text-blue-800 font-semibold"
+        >
+          2 months free
+        </p>
       </div>
     </div>
   </div>

@@ -2,17 +2,51 @@ import { defineStore } from 'pinia'
 
 const { personalInfoSchema } = useValidator()
 
+export type Plan = {
+  label?: string
+  type: 'arcade' | 'advanced' | 'pro'
+  price: number
+  icon?: 'arcade' | 'advanced' | 'pro'
+  isYearlyBilling?: boolean
+}
+
 export const useMultiStepForm = defineStore('multiStepForm', () => {
   function cycleStepIndex(direction: 'forward' | 'backward') {
     if (direction === 'backward') {
-      stepIndex.value--
+      switch (stepIndex.value) {
+        case 0:
+          return
+        case 1:
+          stepIndex.value = 0
+          break
+        case 2:
+          stepIndex.value = 1
+          break
+      }
     }
     if (direction === 'forward') {
-      stepIndex.value++
-      if (validationCheck.value.personalInfo) {
-        stepIndex.value++
-      } else {
-        isForceValidation.value = true
+      switch (stepIndex.value) {
+        case 0:
+          if (validationCheck.value.personalInfo) {
+            stepIndex.value = 1
+          } else {
+            isForceValidation.value = true
+          }
+          break
+        case 1:
+          if (validationCheck.value.plan) {
+            stepIndex.value = 2
+          } else {
+            isForceValidation.value = true
+          }
+          break
+        case 2:
+          if (validationCheck.value.addons) {
+            stepIndex.value = 3
+          } else {
+            isForceValidation.value = true
+          }
+          break
       }
     }
   }
@@ -32,10 +66,10 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     phone: ''
   })
 
-  const selectedPlan = ref({
-    plan: '',
+  const selectedPlan = ref<Plan>({
+    type: '' as Plan['type'],
     price: 0,
-    isMonthly: false
+    isYearlyBilling: false
   })
 
   const addons = ref([])
