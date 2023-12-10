@@ -40,7 +40,7 @@
 import { useMultiStepForm } from '@/store/multiStepForm'
 const multiStepFormStore = useMultiStepForm()
 
-function detectTailwindMobileAndChangerBgColor() {
+function detectTailwindMobileAndChangeBgColor() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches
   if (isMobile) {
     const mainElement = document.querySelector('body')
@@ -51,7 +51,7 @@ function detectTailwindMobileAndChangerBgColor() {
 }
 
 onMounted(() => {
-  detectTailwindMobileAndChangerBgColor()
+  detectTailwindMobileAndChangeBgColor()
 })
 </script>
 

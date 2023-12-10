@@ -12,7 +12,7 @@
           :price-month="plan.price"
           :is-price-yearly="selectedPlan.isYearlyBilling"
           :icon="plan.icon"
-          :is-selected="selectedPlan.type === plan.type"
+          :is-selected="plan.isSelected"
           @click="selectPlan(plan)"
         />
       </div>
@@ -52,10 +52,11 @@
 
 <script setup lang="ts">
 import { useMultiStepForm, type Plan } from '@/store/multiStepForm'
-const { selectedPlan, validationCheck } = useMultiStepForm()
+const { selectedPlan, validationCheck, plans } = useMultiStepForm()
 
 function selectPlan(plan: Plan) {
-  selectedPlan.type = plan.type
+  plans.forEach((plan) => (plan.isSelected = false))
+  plan.isSelected = true
   validationCheck.plan = true
 }
 </script>

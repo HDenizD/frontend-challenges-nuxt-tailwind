@@ -5,7 +5,8 @@ const { personalInfoSchema } = useValidator()
 export type Plan = {
   label?: string
   type: 'arcade' | 'advanced' | 'pro'
-  price?: number
+  price: number
+  isSelected?: boolean
   icon?: 'arcade' | 'advanced' | 'pro'
   isYearlyBilling?: boolean
 }
@@ -66,22 +67,25 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     phone: ''
   })
 
-  const plans: Plan[] = ref([
+  const plans = ref<Plan[]>([
     {
       label: 'Arcade',
       type: 'arcade',
       price: 9,
+      isSelected: false,
       icon: 'arcade'
     },
     {
       label: 'Advanced',
       type: 'advanced',
+      isSelected: false,
       price: 12,
       icon: 'advanced'
     },
     {
       label: 'Pro',
       type: 'pro',
+      isSelected: false,
       price: 15,
       icon: 'pro'
     }
@@ -147,6 +151,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     validationCheck,
     personalInfo,
     selectedPlan,
+    plans,
     addons,
     summary
   }
