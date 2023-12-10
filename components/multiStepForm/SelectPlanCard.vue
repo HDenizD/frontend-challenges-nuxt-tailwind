@@ -6,6 +6,7 @@
     <img
       :src="selectedIcon"
       alt=""
+      class="self-center"
     />
 
     <div class="md:mt-5 ml-3 md:ml-0">

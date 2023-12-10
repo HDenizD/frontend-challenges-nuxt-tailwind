@@ -5,7 +5,7 @@ const { personalInfoSchema } = useValidator()
 export type Plan = {
   label?: string
   type: 'arcade' | 'advanced' | 'pro'
-  price: number
+  price?: number
   icon?: 'arcade' | 'advanced' | 'pro'
   isYearlyBilling?: boolean
 }
@@ -66,22 +66,69 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     phone: ''
   })
 
+  const plans: Plan[] = ref([
+    {
+      label: 'Arcade',
+      type: 'arcade',
+      price: 9,
+      icon: 'arcade'
+    },
+    {
+      label: 'Advanced',
+      type: 'advanced',
+      price: 12,
+      icon: 'advanced'
+    },
+    {
+      label: 'Pro',
+      type: 'pro',
+      price: 15,
+      icon: 'pro'
+    }
+  ])
+
   const selectedPlan = ref<Plan>({
     type: '' as Plan['type'],
     price: 0,
     isYearlyBilling: false
   })
 
-  const addons = ref([])
+  const addons = ref([
+    {
+      title: 'Online service',
+      subTitle: 'Access to multiplayer games',
+      value: 'onlineService',
+      isChecked: false,
+      price: 1
+    },
+    {
+      title: 'Larger storage',
+      subTitle: 'Extra 1TB of cloud save',
+      value: 'largerStorage',
+      isChecked: false,
+      price: 2
+    },
+    {
+      title: 'Customizable profile',
+      subTitle: 'Custom theme on your profile',
+      value: 'customizableProfile',
+      isChecked: false,
+      price: 2
+    }
+  ])
 
-  const summary = ref({
-    name: '',
-    email: '',
-    phone: '',
-    plan: '',
-    price: 0,
-    isMonthly: false,
-    addons: []
+  const summary = computed(() => {
+    return {
+      name: personalInfo.value.name,
+      email: personalInfo.value.email,
+      phone: personalInfo.value.phone,
+      selectedPlan: selectedPlan.value.type,
+      price: selectedPlan.value.price,
+      isYearlyBilling: selectedPlan.value.isYearlyBilling,
+      addons: addons.value
+        .filter((addon) => addon.isChecked)
+        .map((addon) => ({ value: addon.value, price: addon.price }))
+    }
   })
 
   watch(

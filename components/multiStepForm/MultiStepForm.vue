@@ -10,7 +10,7 @@
       <div class="bg-white p-8 my-5 mx-5 -top-20 relative md:static rounded-xl">
         <MultiStepFormPersonalInfo v-if="multiStepFormStore.stepIndex === 0" />
         <MultiStepFormSelectPlan v-if="multiStepFormStore.stepIndex === 1" />
-        <!-- <MultiStepFormAddons /> -->
+        <MultiStepFormPickAddons v-if="multiStepFormStore.stepIndex === 2" />
         <!-- <MultiStepFormSummary /> -->
         <!-- Stepper Content -->
       </div>

@@ -9,7 +9,7 @@
           v-for="plan in plans"
           :key="plan.label"
           :label="plan.label"
-          :price-month="9"
+          :price-month="plan.price"
           :is-price-yearly="selectedPlan.isYearlyBilling"
           :icon="plan.icon"
           :is-selected="selectedPlan.type === plan.type"
@@ -35,7 +35,7 @@
             />
             <div
               class="w-10 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-blue-900 peer-checked:after:translate-x-[170%] rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all dark:border-gray-600"
-            ></div>
+            />
           </label>
         </div>
         <div
@@ -54,30 +54,8 @@
 import { useMultiStepForm, type Plan } from '@/store/multiStepForm'
 const { selectedPlan, validationCheck } = useMultiStepForm()
 
-const plans: Plan[] = [
-  {
-    label: 'Arcade',
-    type: 'arcade',
-    price: 9,
-    icon: 'arcade'
-  },
-  {
-    label: 'Advanced',
-    type: 'advanced',
-    price: 12,
-    icon: 'advanced'
-  },
-  {
-    label: 'Pro',
-    type: 'pro',
-    price: 15,
-    icon: 'pro'
-  }
-]
-
 function selectPlan(plan: Plan) {
   selectedPlan.type = plan.type
-  selectedPlan.price = plan.price
   validationCheck.plan = true
 }
 </script>
