@@ -13,7 +13,6 @@ export type Plan = {
 
 export const useMultiStepForm = defineStore('multiStepForm', () => {
   function cycleStepIndex(direction: 'forward' | 'backward') {
-    console.log('test')
     if (direction === 'backward') {
       switch (stepIndex.value) {
         case 0:
