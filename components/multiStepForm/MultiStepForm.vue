@@ -7,15 +7,17 @@
       class="inline-flex flex-col md:mx-20 w-full justify-between bg-[#ebf4fb] md:bg-white md:h-auto"
     >
       <!-- Stepper Content -->
-      <div class="bg-white p-8 my-5 mx-5 -top-20 relative md:static rounded-xl">
+      <div class="bg-white p-8 my-5 mx-0 -top-20 relative md:static rounded-xl">
         <MultiStepFormPersonalInfo v-if="multiStepFormStore.stepIndex === 0" />
         <MultiStepFormSelectPlan v-if="multiStepFormStore.stepIndex === 1" />
         <MultiStepFormPickAddons v-if="multiStepFormStore.stepIndex === 2" />
-        <!-- <MultiStepFormSummary /> -->
+        <MultiStepFormSummaryDetails
+          v-if="multiStepFormStore.stepIndex === 3"
+        />
         <!-- Stepper Content -->
       </div>
       <div
-        class="flex fixed md:static w-full bottom-0 md:py-0 justify-between p-4 bg-white md:shadow-none shadow-md shadow-black"
+        class="flex fixed md:static w-full bottom-0 md:py-0 justify-between p-4 mb-3 bg-white md:shadow-none shadow-md shadow-black"
       >
         <button
           v-if="multiStepFormStore.stepIndex !== 0"
