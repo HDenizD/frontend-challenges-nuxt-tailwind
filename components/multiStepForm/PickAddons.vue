@@ -17,7 +17,12 @@
 
 <script setup lang="ts">
 import { useMultiStepForm } from '@/store/multiStepForm'
-const { summary, addons } = useMultiStepForm()
+const { addons, validationCheck } = storeToRefs(useMultiStepForm())
+
+watchEffect(() => {
+  const someIsChecked = addons.value.some((addon) => addon.isChecked)
+  validationCheck.value.addons = someIsChecked
+})
 </script>
 
 <style scoped></style>

@@ -10,7 +10,7 @@
           :key="plan.label"
           :label="plan.label"
           :price-month="plan.price"
-          :is-price-yearly="selectedPlan.isYearlyBilling"
+          :is-price-yearly="isYearlyBilling"
           :icon="plan.icon"
           :is-selected="plan.isSelected"
           @click="selectPlan(plan)"
@@ -21,8 +21,8 @@
       >
         <div
           class="font-bold text-blue-950 cursor-pointer select-none"
-          :class="{ 'opacity-40': selectedPlan.isYearlyBilling }"
-          @click="selectedPlan.isYearlyBilling = false"
+          :class="{ 'opacity-40': isYearlyBilling }"
+          @click="isYearlyBilling = false"
         >
           Monthly
         </div>
@@ -30,7 +30,7 @@
           <label class="relative items-center cursor-pointer">
             <input
               type="checkbox"
-              v-model="selectedPlan.isYearlyBilling"
+              v-model="isYearlyBilling"
               class="sr-only peer"
             />
             <div
@@ -40,8 +40,8 @@
         </div>
         <div
           class="font-bold text-blue-950 cursor-pointer select-none"
-          :class="{ 'opacity-40': !selectedPlan.isYearlyBilling }"
-          @click="selectedPlan.isYearlyBilling = true"
+          :class="{ 'opacity-40': !isYearlyBilling }"
+          @click="isYearlyBilling = true"
         >
           Yearly
         </div>
@@ -52,13 +52,24 @@
 
 <script setup lang="ts">
 import { useMultiStepForm, type Plan } from '@/store/multiStepForm'
-const { selectedPlan, validationCheck, plans } = useMultiStepForm()
+
+const { validationCheck, plans, isYearlyBilling } = storeToRefs(
+  useMultiStepForm()
+)
 
 function selectPlan(plan: Plan) {
-  plans.forEach((plan) => (plan.isSelected = false))
+  plans.value.forEach((plan) => (plan.isSelected = false))
   plan.isSelected = true
-  validationCheck.plan = true
+  validationCheck.value.plan = true
 }
+
+// const selectedPlan = computed(() => {
+//   const plan = plans.find((plan: Plan) => plan.isSelected)
+//   if (plan) {
+//     plan.isYearlyBilling = isYearlyBilling.value
+//   }
+//   return plan || {}
+// })
 </script>
 
 <style scoped></style>

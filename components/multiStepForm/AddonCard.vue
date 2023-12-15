@@ -9,16 +9,16 @@
     </div>
     <div class="ml-auto">
       <span class="font-semibold text-sm text-indigo-500"
-        >+${{ price }}{{ selectedPlan.isYearlyBilling ? '/yr' : '/mo' }}</span
+        >+${{ isYearlyBilling ? price * 12 : price
+        }}{{ isYearlyBilling ? '/yr' : '/mo' }}</span
       >
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const test = ref(false)
 import { useMultiStepForm } from '~/store/multiStepForm'
-const { selectedPlan } = useMultiStepForm()
+const { isYearlyBilling } = useMultiStepForm()
 defineProps({
   title: {
     type: String,

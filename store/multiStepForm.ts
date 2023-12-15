@@ -13,6 +13,7 @@ export type Plan = {
 
 export const useMultiStepForm = defineStore('multiStepForm', () => {
   function cycleStepIndex(direction: 'forward' | 'backward') {
+    console.log('test')
     if (direction === 'backward') {
       switch (stepIndex.value) {
         case 0:
@@ -22,6 +23,9 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
           break
         case 2:
           stepIndex.value = 1
+          break
+        case 3:
+          stepIndex.value = 2
           break
       }
     }
@@ -67,6 +71,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     phone: ''
   })
 
+  const isYearlyBilling = ref(false)
   const plans = ref<Plan[]>([
     {
       label: 'Arcade',
@@ -90,12 +95,6 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
       icon: 'pro'
     }
   ])
-
-  const selectedPlan = ref<Plan>({
-    type: '' as Plan['type'],
-    price: 0,
-    isYearlyBilling: false
-  })
 
   const addons = ref([
     {
@@ -122,13 +121,14 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
   ])
 
   const summary = computed(() => {
+    const plan = plans.value.find((plan) => plan.isSelected)
     return {
       name: personalInfo.value.name,
       email: personalInfo.value.email,
       phone: personalInfo.value.phone,
-      selectedPlan: selectedPlan.value.type,
-      price: selectedPlan.value.price,
-      isYearlyBilling: selectedPlan.value.isYearlyBilling,
+      selectedPlan: plan?.type,
+      price: plan?.price,
+      isYearlyBilling: isYearlyBilling.value,
       addons: addons.value
         .filter((addon) => addon.isChecked)
         .map((addon) => ({ value: addon.value, price: addon.price }))
@@ -150,7 +150,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     stepIndex,
     validationCheck,
     personalInfo,
-    selectedPlan,
+    isYearlyBilling,
     plans,
     addons,
     summary
