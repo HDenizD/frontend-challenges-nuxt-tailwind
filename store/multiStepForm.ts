@@ -45,11 +45,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
           }
           break
         case 2:
-          if (validationCheck.value.addons) {
-            stepIndex.value = 3
-          } else {
-            isForceValidation.value = true
-          }
+          stepIndex.value = 3
           break
       }
     }
@@ -60,8 +56,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
 
   const validationCheck = ref({
     personalInfo: false,
-    plan: false,
-    addons: false
+    plan: false
   })
 
   const personalInfo = ref({
@@ -119,6 +114,10 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     }
   ])
 
+  const selectedPlan = computed(() => {
+    return plans.value.find((plan) => plan.isSelected)
+  })
+
   const summary = computed(() => {
     const plan = plans.value.find((plan) => plan.isSelected)
     return {
@@ -130,7 +129,11 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
       isYearlyBilling: isYearlyBilling.value,
       addons: addons.value
         .filter((addon) => addon.isChecked)
-        .map((addon) => ({ value: addon.value, price: addon.price }))
+        .map((addon) => ({
+          value: addon.value,
+          price: addon.price,
+          title: addon.title
+        }))
     }
   })
 
@@ -151,6 +154,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     personalInfo,
     isYearlyBilling,
     plans,
+    selectedPlan,
     addons,
     summary
   }
