@@ -62,14 +62,6 @@ function selectPlan(plan: Plan) {
   plan.isSelected = true
   validationCheck.value.plan = true
 }
-
-// const selectedPlan = computed(() => {
-//   const plan = plans.find((plan: Plan) => plan.isSelected)
-//   if (plan) {
-//     plan.isYearlyBilling = isYearlyBilling.value
-//   }
-//   return plan || {}
-// })
 </script>
 
 <style scoped></style>

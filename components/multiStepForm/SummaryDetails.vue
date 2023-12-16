@@ -63,7 +63,7 @@ const { isYearlyBilling, summary, selectedPlan, stepIndex } = storeToRefs(
 )
 
 function handleCalcIfYearlyBilling(price: number) {
-  return isYearlyBilling ? price * 12 : price
+  return isYearlyBilling.value ? price * 12 - price * 2 : price
 }
 
 function calcTotalPrice() {

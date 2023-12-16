@@ -13,7 +13,11 @@
       <div class="text-base font-bold text-indigo-900">{{ label }}</div>
       <div class="text-sm text-gray-500">
         <p class="my-0.5">
-          {{ isPriceYearly ? `$${priceMonth * 12}/yr` : `$${priceMonth}/mo` }}
+          {{
+            isPriceYearly
+              ? `$${priceMonth * 12 - priceMonth * 2}/yr`
+              : `$${priceMonth}/mo`
+          }}
         </p>
         <p
           v-if="isPriceYearly"
