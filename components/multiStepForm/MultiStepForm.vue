@@ -52,7 +52,6 @@
 
 <script setup lang="ts">
 import { useMultiStepForm } from '@/store/multiStepForm'
-import type PostConfirmVue from './PostConfirm.vue'
 const multiStepFormStore = useMultiStepForm()
 
 function detectTailwindMobileAndChangeBgColor() {
