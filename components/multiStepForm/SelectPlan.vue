@@ -3,6 +3,12 @@
     title="Select Plan"
     sub-title="You have the option of montly or yearly billing."
   >
+    <div
+      v-if="isForcePlanValidation"
+      class="text-red-500 text-sm font-semibold"
+    >
+      Please select a plan
+    </div>
     <div class="relative">
       <div class="md:flex justify-center gap-5">
         <MultiStepFormSelectPlanCard
@@ -53,13 +59,13 @@
 <script setup lang="ts">
 import { useMultiStepForm, type Plan } from '@/store/multiStepForm'
 
-const { validationCheck, plans, isYearlyBilling } = storeToRefs(
-  useMultiStepForm()
-)
+const { validationCheck, plans, isYearlyBilling, isForcePlanValidation } =
+  storeToRefs(useMultiStepForm())
 
 function selectPlan(plan: Plan) {
   plans.value.forEach((plan) => (plan.isSelected = false))
   plan.isSelected = true
+  isForcePlanValidation.value = false
   validationCheck.value.plan = true
 }
 </script>

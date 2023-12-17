@@ -34,14 +34,14 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
           if (validationCheck.value.personalInfo) {
             stepIndex.value = 1
           } else {
-            isForceValidation.value = true
+            isForceInputValidation.value = true
           }
           break
         case 1:
           if (validationCheck.value.plan) {
             stepIndex.value = 2
           } else {
-            isForceValidation.value = true
+            isForcePlanValidation.value = true
           }
           break
         case 2:
@@ -51,7 +51,8 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     }
   }
 
-  const isForceValidation = ref(false)
+  const isForceInputValidation = ref(false)
+  const isForcePlanValidation = ref(false)
   const stepIndex = ref(0)
 
   const validationCheck = ref({
@@ -147,7 +148,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
   )
 
   return {
-    isForceValidation,
+    isForceInputValidation,
     cycleStepIndex,
     stepIndex,
     validationCheck,
@@ -156,6 +157,7 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
     plans,
     selectedPlan,
     addons,
+    isForcePlanValidation,
     summary
   }
 })

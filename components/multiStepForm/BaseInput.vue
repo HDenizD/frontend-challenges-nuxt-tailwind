@@ -122,7 +122,7 @@ function validate() {
 }
 
 watch(
-  () => multiStepFormStore.isForceValidation,
+  () => multiStepFormStore.isForceInputValidation,
   (newValue) => {
     if (newValue) {
       validate()
