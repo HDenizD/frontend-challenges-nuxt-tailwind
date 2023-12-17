@@ -1,8 +1,5 @@
 <template>
-  <MultiStepFormDefaultStep
-    title=""
-    sub-title=""
-  >
+  <MultiStepFormDefaultStep>
     <div
       class="flex justify-center items-center py-20 bg-white p-8 my-5 md:mx-0 mx-5 -top-28 relative md:static rounded-xl"
     >
