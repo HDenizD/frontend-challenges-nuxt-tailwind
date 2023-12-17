@@ -21,17 +21,24 @@
       >
         <button
           v-if="multiStepFormStore.stepIndex !== 0"
-          class="text-blue-900 select-none hover:text-blue-700 font-bold py-3 px-5 rounded-lg"
+          class="text-blue-900 w-32 select-none hover:text-blue-700 font-bold py-3 px-5 rounded-lg"
           @click="multiStepFormStore.cycleStepIndex('backward')"
         >
           Go Back
         </button>
         <button
           v-if="multiStepFormStore.stepIndex !== 3"
-          class="bg-blue-900 select-none hover:bg-blue-700 text-white py-3 px-5 rounded-lg ml-auto"
+          class="bg-blue-900 w-32 select-none hover:bg-blue-700 text-white py-3 px-5 rounded-lg ml-auto"
           @click="multiStepFormStore.cycleStepIndex('forward')"
         >
           Next Step
+        </button>
+        <button
+          v-if="multiStepFormStore.stepIndex === 3"
+          class="bg-indigo-600 w-32 select-none hover:bg-blue-700 text-white py-3 px-5 rounded-lg ml-auto"
+          @click="multiStepFormStore.cycleStepIndex('forward')"
+        >
+          Confirm
         </button>
       </div>
     </div>
