@@ -5,8 +5,13 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
-    'nuxt-icon'
+    'nuxt-icon',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    /* module options */
+    vueI18n: './i18n/i18n.config.ts'
+  },
   colorMode: {
     preference: 'system',
     fallback: 'dark',
