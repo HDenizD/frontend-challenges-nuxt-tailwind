@@ -1,5 +1,5 @@
-import * as en from './en'
-import * as de from './de'
+import en from './en'
+import de from './de'
 
 export default {
   en,

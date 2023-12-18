@@ -6,7 +6,7 @@
     <div
       class="flex flex-col md:mx-20 w-full justify-between bg-[#ebf4fb] md:bg-white md:h-auto"
     >
-      {{ $t('welcome') }}
+      {{ $t('multiStepForm.welcome') }}
       <!-- Stepper Content -->
       <div
         v-if="!orderConfirmed"

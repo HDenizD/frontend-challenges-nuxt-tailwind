@@ -1,6 +1,8 @@
 export default {
-  welcome: 'Welcomess',
-  hello: 'Hello',
-  goodbye: 'Goodbye'
-  // Add more translations here...
+  multiStepForm: {
+    welcome: 'Welcomesss',
+    hello: 'Hello',
+    goodbye: 'Goodbye'
+    // Add more translations here...
+  }
 }
