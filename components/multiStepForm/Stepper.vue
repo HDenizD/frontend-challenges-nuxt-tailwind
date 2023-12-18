@@ -19,7 +19,9 @@
           {{ index + 1 }}
         </div>
         <div class="hidden md:block">
-          <p class="text-white font-light">STEP {{ index + 1 }}</p>
+          <p class="text-white font-light uppercase">
+            {{ $t('step') }} {{ index + 1 }}
+          </p>
           <p class="text-white font-bold uppercase tracking-widest">
             {{ step.name }}
           </p>
@@ -30,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+const { t } = useI18n()
 
 const props = defineProps({
   stepIndex: {
@@ -57,10 +59,10 @@ watch(
 )
 
 const steps = ref([
-  { name: 'Your Info', value: 'info', isActive: true },
-  { name: 'Select Plan', value: 'plan', isActive: false },
-  { name: 'Add-Ons', value: 'addons', isActive: false },
-  { name: 'Summary', value: 'summary', isActive: false }
+  { name: t('yourInfo'), value: 'info', isActive: true },
+  { name: t('selectPlan'), value: 'plan', isActive: false },
+  { name: t('addOns'), value: 'addons', isActive: false },
+  { name: t('summary'), value: 'summary', isActive: false }
 ])
 </script>
 
