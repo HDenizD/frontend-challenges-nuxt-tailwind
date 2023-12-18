@@ -28,11 +28,7 @@
 <script setup lang="ts">
 import { useMultiStepForm } from '~/store/multiStepForm'
 
-const { t } = useI18n()
-
 const { personalInfo } = useMultiStepForm()
-
-t('')
 
 const emit = defineEmits(['is-valid'])
 </script>
