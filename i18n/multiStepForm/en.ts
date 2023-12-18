@@ -1,47 +1,78 @@
 export default {
-  yearly: 'Yearly',
-  monthly: 'Monthly',
-  month: 'month',
-  year: 'year',
-  shortYearly: 'yr',
-  shortMonthly: 'mo',
-  currency: '$',
-  step: 'Step',
-  yourInfo: 'Your Info',
-  selectPlan: 'Select Plan',
-  addOns: 'Add-Ons',
-  summary: 'Summary',
-  nextStep: 'Next Step',
-  goBack: 'Go Back',
-  personalInfoTitle: 'Personal Info',
-  personalInfoSubTitle:
-    'Please provide your name, email address, and phone number.',
-  name: 'Name',
-  emailAddress: 'Email Address',
-  phoneNumber: 'Phone Number',
-  phoneNumberPlaceholder: 'e.g. +1 234 567 890',
-  nameRequired: 'This field is required',
-  emailRequired: 'This field is required',
-  emailInvalid: 'Invalid Email',
-  phoneMinLength: 'at least 6 numbers',
-  selectPlanTitle: 'Select Plan',
-  selectPlanSubTitle: 'You have the option of montly or yearly billing.',
-  discountText: '2 months free',
-  arcade: 'Arcade',
-  advanced: 'Advanced',
-  pro: 'Pro',
-  planRequired: 'Please select a plan',
-  addOnsTitle: 'Pick add-ons',
-  addOnsSubTitle: 'Add-ons help enhance your gaming experience.',
-  onlineServiceTitle: 'Online Service',
-  onlineServiceDescription: 'Access to multiplayer games',
-  largerStorageTitle: 'Larger Storage',
-  largerStorageDescription: 'Extra 1TB of cloud save',
-  customizableProfileTitle: 'Customizable Profile',
-  customizableProfileDescription: 'Custom theme on your profile',
-  summaryTitle: 'Finishing Up',
-  summarySubTitle: 'Double-check everthing looks OK before confirming.',
-  change: 'Change',
-  total: 'Total',
-  per: 'per'
+  shared: {
+    yearly: 'Yearly',
+    monthly: 'Monthly',
+    month: 'month',
+    year: 'year',
+    shortYearly: 'yr',
+    shortMonthly: 'mo',
+    currency: '$'
+  },
+  stepper: {
+    step: 'Step',
+    yourInfo: 'Your Info',
+    selectPlan: 'Select Plan',
+    addOns: 'Add-Ons',
+    summary: 'Summary',
+    nextStep: 'Next Step',
+    goBack: 'Go Back'
+  },
+  personalInfo: {
+    title: 'Personal Info',
+    subTitle: 'Please provide your name, email address, and phone number.',
+    name: 'Name',
+    emailAddress: 'Email Address',
+    phoneNumber: 'Phone Number',
+    phoneNumberPlaceholder: 'e.g. +1 234 567 890',
+    validatorMsg: {
+      name: {
+        required: 'This field is required'
+      },
+      email: {
+        required: 'This field is required',
+        email: 'Invalid Email'
+      },
+      phone: {
+        minLength: 'at least 6 numbers'
+      }
+    }
+  },
+  selectPlan: {
+    title: 'Select Plan',
+    subTitle: 'You have the option of montly or yearly billing.',
+    discountText: '2 months free',
+    arcade: 'Arcade',
+    advanced: 'Advanced',
+    pro: 'Pro',
+    validatorMsg: {
+      plan: {
+        required: 'Please select a plan'
+      }
+    }
+  },
+  addOns: {
+    title: 'Pick add-ons',
+    subTitle: 'Add-ons help enhance your gaming experience.',
+    addon: {
+      onlineService: {
+        title: 'Online Service',
+        description: 'Access to multiplayer games'
+      },
+      largerStorage: {
+        title: 'Larger Storage',
+        description: 'Extra 1TB of cloud save'
+      },
+      customizableProfile: {
+        title: 'Customizable Profile',
+        description: 'Custom theme on your profile'
+      }
+    }
+  },
+  summary: {
+    title: 'Finishing Up',
+    subTitle: 'Double-check everthing looks OK before confirming.',
+    change: 'Change',
+    total: 'Total',
+    per: 'per'
+  }
 }

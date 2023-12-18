@@ -20,7 +20,7 @@
         </div>
         <div class="hidden md:block">
           <p class="text-white font-light uppercase">
-            {{ $t('step') }} {{ index + 1 }}
+            {{ t('stepper.step') }} {{ index + 1 }}
           </p>
           <p class="text-white font-bold uppercase tracking-widest">
             {{ step.name }}
@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-const { t } = useI18n()
+const { t } = useI18n<{ message: enMultiStepForm }>()
 
 const props = defineProps({
   stepIndex: {
@@ -59,10 +59,10 @@ watch(
 )
 
 const steps = ref([
-  { name: t('yourInfo'), value: 'info', isActive: true },
-  { name: t('selectPlan'), value: 'plan', isActive: false },
-  { name: t('addOns'), value: 'addons', isActive: false },
-  { name: t('summary'), value: 'summary', isActive: false }
+  { name: t('stepper.yourInfo'), value: 'info', isActive: true },
+  { name: t('stepper.selectPlan'), value: 'plan', isActive: false },
+  { name: t('stepper.addOns'), value: 'addons', isActive: false },
+  { name: t('stepper.summary'), value: 'summary', isActive: false }
 ])
 </script>
 
