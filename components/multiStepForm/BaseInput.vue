@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { useMultiStepForm } from '~/store/multiStepForm'
+const { t } = useI18n<{ message: enMultiStepForm }>()
 
 const multiStepFormStore = useMultiStepForm()
 
@@ -79,7 +80,7 @@ function validate() {
       emit('update:modelValue', numberResult.data)
     } else {
       numberResult.error.issues.map((issue) => {
-        errorMessages.value.push(issue.message)
+        errorMessages.value.push(t(issue.message))
       })
     }
     return
@@ -92,7 +93,7 @@ function validate() {
         emit('update:modelValue', emailResult.data)
       } else {
         emailResult.error.issues.map((issue) => {
-          errorMessages.value.push(issue.message)
+          errorMessages.value.push(t(issue.message))
         })
       }
       break
@@ -103,7 +104,7 @@ function validate() {
         emit('update:modelValue', numberResult.data)
       } else {
         numberResult.error.issues.map((issue) => {
-          errorMessages.value.push(issue.message)
+          errorMessages.value.push(t(issue.message))
         })
       }
       break
@@ -114,7 +115,8 @@ function validate() {
         emit('update:modelValue', stringResult.data)
       } else {
         stringResult.error.issues.map((issue) => {
-          errorMessages.value.push(issue.message)
+          const localizedErrorMsg = t(issue.message)
+          errorMessages.value.push(localizedErrorMsg)
         })
       }
       break

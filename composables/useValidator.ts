@@ -1,19 +1,22 @@
 import { z } from 'zod'
-// const { t } = useI18n<{ message: enMultiStepForm }>()
 
 export function useValidator() {
   const emailSchema = z
     .string()
-    .min(1, { message: 'This field is required' })
-    .email({ message: 'Invalid email' })
+    .min(1, { message: 'validation.required' })
+    .email({ message: 'validation.invalidEmail' })
 
-  const stringSchema = z.string().min(1, { message: 'This field is required' })
-  const numberSchema = z.coerce.number().min(6, { message: 'min 6 numbers' })
+  const stringSchema = z.string().min(1, {
+    message: 'validation.required'
+  })
+  const numberSchema = z.coerce
+    .number()
+    .min(6, { message: 'validation.minLength6' })
   const stringNumbersSchema = z
     .string()
-    .min(6, { message: 'at least 6 numbers' })
+    .min(6, { message: 'validation.minLength6' })
     .regex(/^[0-9\s\+]*$/, {
-      message: 'Only numbers are allowed'
+      message: 'validation.invalidNumbers'
     })
 
   function validateEmail(email: string) {

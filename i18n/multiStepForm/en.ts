@@ -1,4 +1,11 @@
 export default {
+  validation: {
+    required: 'This field is required',
+    invalidEmail: 'Invalid Email',
+    invalidNumbers: 'Only numbers are allowed',
+    minLength6: 'at least 6 numbers',
+    selectPlan: 'Please select a plan'
+  },
   shared: {
     yearly: 'Yearly',
     monthly: 'Monthly',
@@ -23,19 +30,7 @@ export default {
     name: 'Name',
     emailAddress: 'Email Address',
     phoneNumber: 'Phone Number',
-    phoneNumberPlaceholder: 'e.g. +1 234 567 890',
-    validatorMsg: {
-      name: {
-        required: 'This field is required'
-      },
-      email: {
-        required: 'This field is required',
-        email: 'Invalid Email'
-      },
-      phone: {
-        minLength: 'at least 6 numbers'
-      }
-    }
+    phoneNumberPlaceholder: 'e.g. +1 234 567 890'
   },
   selectPlan: {
     title: 'Select Plan',
@@ -43,12 +38,7 @@ export default {
     discountText: '2 months free',
     arcade: 'Arcade',
     advanced: 'Advanced',
-    pro: 'Pro',
-    validatorMsg: {
-      plan: {
-        required: 'Please select a plan'
-      }
-    }
+    pro: 'Pro'
   },
   addOns: {
     title: 'Pick add-ons',
