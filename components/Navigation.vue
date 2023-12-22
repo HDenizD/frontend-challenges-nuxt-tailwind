@@ -57,6 +57,7 @@
       </template>
     </div>
     <ColorModeToggle />
+    <LanguageSelect class="mx-5" />
     <!-- <button
       class="block md:hidden text-white"
       @click="toggleMenu"

@@ -1,13 +1,13 @@
 <template>
   <MultiStepFormDefaultStep
-    title="Select Plan"
-    sub-title="You have the option of montly or yearly billing."
+    :title="t('selectPlan.title')"
+    :sub-title="t('selectPlan.subTitle')"
   >
     <div
       v-if="isForcePlanValidation"
       class="text-red-500 text-sm font-semibold"
     >
-      Please select a plan
+      {{ t('validation.selectPlan') }}
     </div>
     <div class="relative">
       <div class="md:flex justify-center gap-5">
@@ -30,7 +30,7 @@
           :class="{ 'opacity-40': isYearlyBilling }"
           @click="isYearlyBilling = false"
         >
-          Monthly
+          {{ t('shared.monthly') }}
         </div>
         <div>
           <label class="relative items-center cursor-pointer">
@@ -49,7 +49,7 @@
           :class="{ 'opacity-40': !isYearlyBilling }"
           @click="isYearlyBilling = true"
         >
-          Yearly
+          {{ t('shared.yearly') }}
         </div>
       </div>
     </div>
@@ -58,6 +58,7 @@
 
 <script setup lang="ts">
 import { useMultiStepForm, type Plan } from '@/store/multiStepForm'
+const { t } = useI18n<{ message: enMultiStepForm }>()
 
 const { validationCheck, plans, isYearlyBilling, isForcePlanValidation } =
   storeToRefs(useMultiStepForm())

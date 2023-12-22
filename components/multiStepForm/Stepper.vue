@@ -1,6 +1,6 @@
 <template>
   <div
-    class="background-image md:bg-center bg-bottom bg-repeat bg-cover md:bg-clip-border md:static min-w-full relative md:min-w-[280px] p-9 md:rounded-xl md:h-full h-48"
+    class="background-image md:bg-center bg-bottom bg-repeat bg-cover md:bg-clip-border md:static min-w-full relative md:min-w-[290px] p-9 md:rounded-xl md:h-full h-48"
   >
     <ul class="flex gap-x-5 relative top-4 justify-center md:block">
       <li
@@ -22,8 +22,8 @@
           <p class="text-white font-light uppercase">
             {{ t('stepper.step') }} {{ index + 1 }}
           </p>
-          <p class="text-white font-bold uppercase tracking-widest">
-            {{ step.name }}
+          <p class="text-white text-xs font-bold uppercase tracking-widest">
+            {{ t(step.name) }}
           </p>
         </div>
       </li>
@@ -59,10 +59,10 @@ watch(
 )
 
 const steps = ref([
-  { name: t('stepper.yourInfo'), value: 'info', isActive: true },
-  { name: t('stepper.selectPlan'), value: 'plan', isActive: false },
-  { name: t('stepper.addOns'), value: 'addons', isActive: false },
-  { name: t('stepper.summary'), value: 'summary', isActive: false }
+  { name: 'stepper.yourInfo', value: 'info', isActive: true },
+  { name: 'stepper.selectPlan', value: 'plan', isActive: false },
+  { name: 'stepper.addOns', value: 'addons', isActive: false },
+  { name: 'stepper.summary', value: 'summary', isActive: false }
 ])
 </script>
 

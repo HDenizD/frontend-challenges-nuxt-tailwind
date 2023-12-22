@@ -1,7 +1,7 @@
 <template>
   <MultiStepFormDefaultStep
-    title="Pick add-ons"
-    sub-title="Add-ons help enhance your gaming experience."
+    :title="t('addOns.title')"
+    :sub-title="t('addOns.subTitle')"
   >
     <MultiStepFormAddonCard
       v-for="addon in addons"
@@ -17,6 +17,7 @@
 
 <script setup lang="ts">
 import { useMultiStepForm } from '@/store/multiStepForm'
+const { t } = useI18n<{ message: enMultiStepForm }>()
 const { addons } = storeToRefs(useMultiStepForm())
 </script>
 

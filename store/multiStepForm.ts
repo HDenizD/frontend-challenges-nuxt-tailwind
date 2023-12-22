@@ -93,22 +93,22 @@ export const useMultiStepForm = defineStore('multiStepForm', () => {
 
   const addons = ref([
     {
-      title: 'Online service',
-      subTitle: 'Access to multiplayer games',
+      title: 'addOns.addon.onlineService.title',
+      subTitle: 'addOns.addon.onlineService.description',
       value: 'onlineService',
       isChecked: false,
       price: 1
     },
     {
-      title: 'Larger storage',
-      subTitle: 'Extra 1TB of cloud save',
+      title: 'addOns.addon.largerStorage.title',
+      subTitle: 'addOns.addon.largerStorage.description',
       value: 'largerStorage',
       isChecked: false,
       price: 2
     },
     {
-      title: 'Customizable profile',
-      subTitle: 'Custom theme on your profile',
+      title: 'addOns.addon.customizableProfile.title',
+      subTitle: 'addOns.addon.customizableProfile.description',
       value: 'customizableProfile',
       isChecked: false,
       price: 2

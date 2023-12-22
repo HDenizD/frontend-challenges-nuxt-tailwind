@@ -15,15 +15,19 @@
         <p class="my-0.5">
           {{
             isPriceYearly
-              ? `$${priceMonth * 12 - priceMonth * 2}/yr`
-              : `$${priceMonth}/mo`
+              ? `${t('shared.currency')}${priceMonth * 12 - priceMonth * 2}/${t(
+                  'shared.shortYearly'
+                )}`
+              : `${t('shared.currency')}${priceMonth}/${t(
+                  'shared.shortMonthly'
+                )}`
           }}
         </p>
         <p
           v-if="isPriceYearly"
           class="text-blue-800 font-semibold"
         >
-          2 months free
+          {{ t('selectPlan.discountText') }}
         </p>
       </div>
     </div>
@@ -35,6 +39,7 @@ import arcadeIcon from './../../challenges/multi-step-form/assets/images/icon-ar
 import advancedIcon from './../../challenges/multi-step-form/assets/images/icon-advanced.svg'
 import proIcon from './../../challenges/multi-step-form/assets/images/icon-pro.svg'
 import type { PropType } from 'vue'
+const { t } = useI18n<{ message: enMultiStepForm }>()
 const props = defineProps({
   icon: {
     type: String as PropType<'arcade' | 'advanced' | 'pro' | undefined>,

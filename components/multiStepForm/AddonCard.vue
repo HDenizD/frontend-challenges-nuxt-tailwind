@@ -4,21 +4,27 @@
   >
     <MultiStepFormCheckbox :is-checked="isChecked" />
     <div class="ml-4">
-      <h3 class="text-blue-900 font-bold">{{ title }}</h3>
-      <p class="text-sm font-semibold text-gray-400">{{ subTitle }}</p>
+      <h3 class="text-blue-900 font-bold">{{ t(title) }}</h3>
+      <p class="text-sm font-semibold text-gray-400">{{ t(subTitle) }}</p>
     </div>
     <div class="ml-auto">
       <span class="font-semibold text-sm text-indigo-500"
-        >+${{ isYearlyBilling ? price * 12 : price
-        }}{{ isYearlyBilling ? '/yr' : '/mo' }}</span
-      >
+        >+{{ t('shared.currency') }}{{ isYearlyBilling ? price * 12 : price }}
+        {{
+          isYearlyBilling
+            ? `/${t('shared.shortYearly')}`
+            : `/${t('shared.shortMonthly')}`
+        }}
+      </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMultiStepForm } from '~/store/multiStepForm'
+const { t } = useI18n<{ message: enMultiStepForm }>()
 const { isYearlyBilling } = useMultiStepForm()
+
 defineProps({
   title: {
     type: String,

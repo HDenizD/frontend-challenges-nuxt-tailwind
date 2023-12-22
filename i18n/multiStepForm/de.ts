@@ -11,8 +11,8 @@ export default {
     monthly: 'Monatlich',
     month: 'Monat',
     year: 'Jahr',
-    shortYearly: 'Jahr',
-    shortMonthly: 'Monat',
+    shortYearly: 'j.',
+    shortMonthly: 'm.',
     currency: '€'
   },
   stepper: {
@@ -37,7 +37,7 @@ export default {
     title: 'Plan auswählen',
     subTitle:
       'Sie haben die Möglichkeit zwischen monatlicher oder jährlicher Abrechnung.',
-    discountText: '2 Monate kostenlos',
+    discountText: '2 Monate frei',
     arcade: 'Arcade',
     advanced: 'Fortgeschritten',
     pro: 'Pro'
