@@ -17,6 +17,7 @@
         :type="type"
         :name="id"
         :id="id"
+        :autocomplete="autoComplete"
         :class="{
           'outline-red-500': errorMessages.length > 0
         }"
@@ -43,6 +44,10 @@ const props = defineProps({
   modelValue: {
     type: String,
     required: true
+  },
+  autoComplete: {
+    type: String as PropType<'on' | 'off' | 'name' | 'email' | 'tel'>,
+    default: 'off'
   },
   label: {
     type: String,
