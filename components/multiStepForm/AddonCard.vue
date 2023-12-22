@@ -9,8 +9,8 @@
     </div>
     <div class="ml-auto">
       <span class="font-semibold text-sm text-indigo-500"
-        >+{{ t('shared.currency') }}{{ isYearlyBilling ? price * 12 : price }}
-        {{
+        >+{{ t('shared.currency') }}{{ isYearlyBilling ? price * 12 : price
+        }}{{
           isYearlyBilling
             ? `/${t('shared.shortYearly')}`
             : `/${t('shared.shortMonthly')}`
