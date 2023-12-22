@@ -29,21 +29,21 @@
           class="text-blue-900 w-32 select-none hover:text-blue-700 font-bold py-3 px-5 rounded-lg"
           @click="multiStepFormStore.cycleStepIndex('backward')"
         >
-          Go Back
+          {{ t('stepper.goBack') }}
         </button>
         <button
           v-if="multiStepFormStore.stepIndex !== 3 && !orderConfirmed"
           class="bg-blue-900 w-32 select-none hover:bg-blue-700 text-white py-3 px-5 rounded-lg ml-auto"
           @click="multiStepFormStore.cycleStepIndex('forward')"
         >
-          Next Step
+          {{ t('stepper.nextStep') }}
         </button>
         <button
           v-if="multiStepFormStore.stepIndex === 3 && !orderConfirmed"
           class="bg-indigo-600 w-32 select-none hover:bg-blue-700 text-white py-3 px-5 rounded-lg ml-auto"
           @click="orderConfirmed = true"
         >
-          Confirm
+          {{ t('stepper.confirm') }}
         </button>
       </div>
     </div>
@@ -53,6 +53,7 @@
 <script setup lang="ts">
 import { useMultiStepForm } from '@/store/multiStepForm'
 const multiStepFormStore = useMultiStepForm()
+const { t } = useI18n<{ message: enMultiStepForm }>()
 
 function detectTailwindMobileAndChangeBgColor() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches

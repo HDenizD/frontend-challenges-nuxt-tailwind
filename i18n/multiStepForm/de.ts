@@ -21,8 +21,9 @@ export default {
     selectPlan: 'Plan auswählen',
     addOns: 'Add-Ons',
     summary: 'Zusammenfassung',
-    nextStep: 'Nächster Schritt',
-    goBack: 'Zurück'
+    nextStep: 'Weiter',
+    goBack: 'Zurück',
+    confirm: 'Bestätigen'
   },
   personalInfo: {
     title: 'Persönliche Informationen',
@@ -66,5 +67,11 @@ export default {
     change: 'Ändern',
     total: 'Gesamt',
     per: 'pro'
+  },
+  postConfirm: {
+    thankYou: 'Vielen Dank!',
+    thankYouText:
+      'Vielen Dank für die Bestätigung Ihres Abonnements! Wir hoffen, dass Sie viel Spaß beim Benutzen unserer Plattform haben. Wenn Sie Unterstützung benötigen, können Sie uns jederzeit per E-Mail kontaktieren unter',
+    email: 'support@loremgaming.de'
   }
 }

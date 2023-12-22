@@ -1,27 +1,30 @@
 <template>
   <MultiStepFormDefaultStep
-    title="Finishing Up"
-    sub-title="Double-check everthing looks OK before confirming."
+    :title="t('summary.title')"
+    :sub-title="t('summary.subTitle')"
   >
     <div class="bg-[#f7f9fe] w-full rounded-md p-5">
       <div class="flex justify-between items-center">
         <div>
           <p class="font-bold text-blue-900">
             {{ selectedPlan?.label }} ({{
-              isYearlyBilling ? 'Yearly' : 'Monthly'
+              isYearlyBilling ? t('shared.yearly') : t('shared.monthly')
             }})
           </p>
           <button
             class="underline text-grey-600 opacity-50"
             @click="stepIndex = 1"
           >
-            Change
+            {{ t('summary.change') }}
           </button>
         </div>
         <div>
           <p class="font-extrabold text-blue-900">
-            ${{ handleCalcIfYearlyBilling(selectedPlan?.price || 0) }}/{{
-              isYearlyBilling ? 'yr' : 'mo'
+            {{ t('shared.currency')
+            }}{{ handleCalcIfYearlyBilling(selectedPlan?.price || 0) }}/{{
+              isYearlyBilling
+                ? t('shared.shortYearly')
+                : t('shared.shortMonthly')
             }}
           </p>
         </div>
@@ -33,11 +36,14 @@
           class="flex mb-3 justify-between"
         >
           <p class="text-gray-600 opacity-50 font-semibold">
-            {{ addon.title }}
+            {{ t(addon.title) }}
           </p>
           <p class="text-blue-950 font-semibold text-sm">
-            +${{ handleCalcIfYearlyBilling(addon.price) }}/{{
-              isYearlyBilling ? 'yr' : 'mo'
+            +{{ t('shared.currency')
+            }}{{ handleCalcIfYearlyBilling(addon.price) }}/{{
+              isYearlyBilling
+                ? t('shared.shortYearly')
+                : t('shared.shortMonthly')
             }}
           </p>
         </div>
@@ -46,10 +52,14 @@
 
     <div class="mx-5 flex justify-between">
       <p class="text-gray-500 opacity-70 font-semibold">
-        Total ({{ isYearlyBilling ? 'per year' : 'per month' }})
+        {{ t('summary.total') }} ({{
+          isYearlyBilling
+            ? `${t('summary.per')} ${t('shared.year')}`
+            : `${t('summary.per')} ${t('shared.month')}`
+        }})
       </p>
       <p class="text-indigo-700 font-bold text-lg">
-        +${{ calcTotalPrice() }}/{{ isYearlyBilling ? 'yr' : 'mo' }}
+        {{ t('shared.currency') }}{{ calcTotalPrice() }}
       </p>
     </div>
   </MultiStepFormDefaultStep>
@@ -58,6 +68,7 @@
 <script setup lang="ts">
 import { useMultiStepForm } from '~/store/multiStepForm'
 
+const { t } = useI18n<{ message: enMultiStepForm }>()
 const { isYearlyBilling, summary, selectedPlan, stepIndex } = storeToRefs(
   useMultiStepForm()
 )

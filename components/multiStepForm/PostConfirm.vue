@@ -10,17 +10,15 @@
           class="self-center mb-5"
         />
         <div class="text-3xl text-blue-950 font-bold text-center mb-4">
-          Thank you!
+          {{ t('postConfirm.thankYou') }}
         </div>
         <p class="text-center text-gray-400 mx-5">
-          Thanks for confirming your subscription! We hope you have fun using
-          our platform. If you ever need support, please feel free to email us
-          at
+          {{ t('postConfirm.thankYouText') }}
           <a
             href="mailto:support@loremgaming.com"
             class="underline text-blue-800"
           >
-            support@loremgaming.com</a
+            {{ t('postConfirm.email') }}</a
           >.
         </p>
       </div>
@@ -30,6 +28,7 @@
 
 <script setup lang="ts">
 import thankYouIcon from '@/challenges/multi-step-form/assets/images/icon-thank-you.svg'
+const { t } = useI18n<{ message: enMultiStepForm }>()
 </script>
 
 <style scoped></style>

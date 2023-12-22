@@ -22,7 +22,8 @@ export default {
     addOns: 'Add-Ons',
     summary: 'Summary',
     nextStep: 'Next Step',
-    goBack: 'Go Back'
+    goBack: 'Go Back',
+    confirm: 'Confirm'
   },
   personalInfo: {
     title: 'Personal Info',
@@ -64,5 +65,11 @@ export default {
     change: 'Change',
     total: 'Total',
     per: 'per'
+  },
+  postConfirm: {
+    thankYou: 'Thank You!',
+    thankYouText:
+      'Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at',
+    email: 'support@loremgaming.com'
   }
 }
