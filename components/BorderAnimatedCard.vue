@@ -22,7 +22,8 @@
   transition: all 0.2s ease-in-out;
 }
 .animated-card:hover::before {
-  animation: spin 0.5s linear infinite;
+  animation: spin 1s linear infinite;
+  width: 1000px;
 }
 
 .animated-card:hover {
@@ -31,10 +32,10 @@
 .animated-card::before {
   content: '';
   position: absolute;
-  width: 150px;
+  width: 250px;
   height: 130%;
-  transition-duration: 5000ms !important;
   animation: spin 2s linear infinite;
+  transition: 0.2s ease-in-out;
   background: linear-gradient(#4800ff 0%, #ff6200 100%);
 }
 .animated-card::after {
