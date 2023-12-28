@@ -1,7 +1,7 @@
 <template>
-  <div class="p-1 flex justify-center items-center overflow-hidden m-12">
+  <div class="p-1 flex justify-center items-center overflow-hidden">
     <form
-      class="w-[500px] h-[800px] rounded-2xl relative flex justify-center items-center bg-[#121212]"
+      class="w-[500px] h-[800px] relative flex justify-center items-center bg-[#121212]"
     >
       <div class="w-[102%] h-[150%] absolute overflow-hidden">
         <div class="bg-gradient-cone w-full h-full"></div>
@@ -44,6 +44,6 @@ const email = ref('')
   /* background-size: contain;
   background-position: center; */
 
-  animation: rotate 5s infinite linear;
+  animation: rotate 3s infinite linear;
 }
 </style>
