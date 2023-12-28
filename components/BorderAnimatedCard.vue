@@ -8,7 +8,7 @@
 
 <style scoped>
 .animated-card {
-  margin-top: 20px;
+  margin: 30px;
   position: relative;
   width: 300px;
   height: 400px;
