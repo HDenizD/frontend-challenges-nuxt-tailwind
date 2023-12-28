@@ -1,5 +1,7 @@
 <template>
-  <div>index page</div>
+  <div>
+    <SexyLoginForm />
+  </div>
 </template>
 
 <script setup lang="ts"></script>
