@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0e1739;
+  background: #121212;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -35,12 +35,12 @@
   height: 130%;
   transition-duration: 5000ms !important;
   animation: spin 2s linear infinite;
-  background: linear-gradient(#f00 0%, #00f 100%);
+  background: linear-gradient(#4800ff 0%, #ff6200 100%);
 }
 .animated-card::after {
   content: '';
   inset: 2px;
-  background: #0e1739;
+  background: #121212;
   border-radius: 20px;
   position: absolute;
 }
