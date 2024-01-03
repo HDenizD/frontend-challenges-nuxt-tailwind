@@ -38,6 +38,14 @@
   transition: 0.2s ease-in-out;
   background: linear-gradient(#4800ff 0%, #ff6200 100%);
 }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .animated-card::after {
   content: '';
   inset: 2px;
